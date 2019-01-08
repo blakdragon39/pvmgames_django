@@ -4,8 +4,17 @@
 }
 
 body {
-    background-color: #38333D;
+    font-family: Verdana, sans-serif;
     color: #eeedee;
+    background-color: #38333D;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: #eeedee;
+}
+
+.titlebar {
+    background-color: #222123;
 }
 
 .title {
@@ -14,6 +23,7 @@ body {
     padding: 8px 8px 8px 8px;
 }
 
-.titlebar {
-    background-color: #222123;
+.login {
+    font-size: small;
+    padding: 0 8px 8px 8px;
 }

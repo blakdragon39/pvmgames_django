@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
-from login.views import signup
+from login.views import signup, home
 
 login_urls = [
+    url(r'^$', home, name='home'),
     url(r'^signup/$', signup, name='signup'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
