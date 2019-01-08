@@ -6,15 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet">
-    <link href="{% static 'login/base.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'base.css' %}" rel="stylesheet" type="text/css"/>
     <title>PvM Competitor</title>
 </head>
 
 <body>
     <h1 class="titlebar title">PvM Competitor</h1>
     <div class="titlebar login"><a href="{% url 'signup' %}">Sign up</a> | Login</div>
-
-    {%  block content %}{% endblock %}
+    <div class="content">{%  block content %}{% endblock %}</div>
 </body>
 
 </html>
