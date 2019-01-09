@@ -5,7 +5,16 @@ from login.forms import SignUpForm
 
 
 def home(request):
-    return render(request, 'base.html')
+    print str(request.user.first_name)
+
+    if request.user:
+        context = {
+            'display_name': request.user.first_name
+        }
+    else:
+        context = {}
+
+    return render(request, 'base.html', context)
 
 
 def signup(request):

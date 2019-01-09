@@ -12,7 +12,15 @@
 
 <body>
     <h1 class="titlebar title">PvM Competitor</h1>
-    <div class="titlebar login"><a href="{% url 'signup' %}">Sign up</a> | Login</div>
+
+    <div class="titlebar login">
+    {% if display_name %}
+        Welcome, {{ display_name }} | Logout
+    {% else %}
+        <a href="{% url 'signup' %}">Sign up</a> | Login
+    {% endif %}
+    </div>
+
     <div class="content">{%  block content %}{% endblock %}</div>
 </body>
 
