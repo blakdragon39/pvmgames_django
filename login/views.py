@@ -37,7 +37,6 @@ def signup(request):
 def login_user(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
-        print form.is_valid()
         if form.is_valid():
             email = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
