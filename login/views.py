@@ -5,9 +5,7 @@ from login.forms import SignUpForm
 
 
 def home(request):
-    print str(request.user.first_name)
-
-    if request.user:
+    if request.user.is_authenticated:
         context = {
             'display_name': request.user.first_name
         }
@@ -33,3 +31,8 @@ def signup(request):
         form = SignUpForm()
 
     return render(request, 'signup.html', {'form': form})
+
+
+def logout(request):
+    logout(request)
+    return redirect('home')
