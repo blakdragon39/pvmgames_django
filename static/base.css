@@ -1,3 +1,5 @@
+/* https://www.color-hex.com/color-palette/70094 */
+
 * {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
@@ -12,6 +14,10 @@ body {
 
 a:link, a:visited, a:hover, a:active {
     color: #eeedee;
+}
+
+button {
+    padding: 4px 4px 4px 4px;
 }
 
 .titlebar {
@@ -30,5 +36,9 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .content {
-    padding: 16px 16px 16px 16px;
+    margin: 16px 16px 16px 16px;
+}
+
+.formfield {
+    margin: 8px 8px 8px 8px;
 }

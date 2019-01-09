@@ -3,9 +3,25 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="formfield">
+            <label for="{{ form.email.id_for_label }}">Email: </label> {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div class="formfield">
+            <label for="{{ form.first_name.id_for_label }}">Display Name: </label> {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+        <div class="formfield">
+            <label for="{{ form.password1.id_for_label }}">Enter password: </label> {{ form.password1 }}
+            {{ form.password1.errors }}
+        </div>
+        <div class="formfield">
+            <label for="{{ form.password2.id_for_label }}">Confirm password: </label> {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+        <button type="submit">Sign up</button>
+    </form>
 {% endblock %}
