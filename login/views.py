@@ -13,7 +13,7 @@ def home(request):
     else:
         context = {}
 
-    return render(request, 'base.html', context)
+    return render(request, 'home.html', context)
 
 
 def signup(request):
