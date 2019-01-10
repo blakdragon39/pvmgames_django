@@ -17,11 +17,11 @@ class Command(BaseCommand):
 
                 item = add_item(item_name, item_file)
                 boss = add_boss(boss_name, boss_file)
+                'Adding ' + str(item) + ' - ' + str(boss)
                 Drop.objects.create(item=item, boss=boss)
 
 
 def add_item(name, image):
-    print 'Adding ' + name
     try:
         item = Item.objects.get(name=name)
         item.delete()
@@ -33,7 +33,6 @@ def add_item(name, image):
 
 
 def add_boss(name, image):
-    print 'Adding ' + name
     try:
         boss = Boss.objects.get(name=name)
         boss.delete()

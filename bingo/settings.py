@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'  # todo
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
