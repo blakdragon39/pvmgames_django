@@ -2,13 +2,15 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 
+from games.models import Boss
 from login.forms import SignUpForm
 
 
 def home(request):
     if request.user.is_authenticated:
         context = {
-            'display_name': request.user.first_name
+            'display_name': request.user.first_name,
+            # 'image': 'bosses/' + Boss.objects.get(name='Abyssal Sire').image
         }
     else:
         context = {}

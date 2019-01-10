@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'bingo.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DB_HOST = 'localhost'
-DB_NAME = 'pvmcompetitor'
+DB_NAME = 'pvmgames'
 DB_USER = 'root'
 DB_PASS = ''
 

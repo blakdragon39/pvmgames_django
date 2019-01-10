@@ -5,13 +5,9 @@ from django.db import models
 
 
 '''
-- competition
-- game card
+- competition: can have multiple people and is managed by one person
+- game card: 
     - different games
-- drops
-    - bosses
-    - items
-    - combinations
 '''
 
 
