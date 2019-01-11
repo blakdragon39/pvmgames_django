@@ -42,4 +42,4 @@ def new_card(request):
 
 
 def bingo_card(request, **kwargs):
-    return render(request, 'home.html')
+    return render(request, 'bingo_card.html')
