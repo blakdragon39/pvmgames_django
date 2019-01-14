@@ -14,7 +14,12 @@ from django.db import models
 
 class Boss(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
-    image = models.CharField(max_length=100, null=False, blank=False)
+    _image = models.CharField(max_length=100, null=False, blank=False)
+
+    def get_image(self):
+        return 'bosses/' + self._image
+
+    image = property(get_image)
 
     def __unicode__(self):
         return self.name
@@ -22,7 +27,12 @@ class Boss(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
-    image = models.CharField(max_length=100, null=False, blank=False)
+    _image = models.CharField(max_length=100, null=False, blank=False)
+
+    def get_image(self):
+        return 'items/' + self._image
+
+    image = property(get_image)
 
     def __unicode__(self):
         return self.name

@@ -8,12 +8,12 @@
 body {
     font-family: Verdana, sans-serif;
     font-size: small;
-    color: #eeedee;
+    color: #EEEDEE;
     background-color: #38333D;
 }
 
 a:link, a:visited, a:hover, a:active {
-    color: #eeedee;
+    color: #EEEDEE;
 }
 
 button {
@@ -41,4 +41,34 @@ button {
 
 .formfield {
     margin: 8px 8px 8px 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: repeat(5, 100px);
+    grid-template-columns: repeat(5, 100px);
+}
+
+.griditem {
+    height: 100px;
+    width: 100px;
+    border: 1px solid #EEEDEE;
+}
+
+.bingoitem {
+    max-height: 92px;
+    max-width: 92px;
+    position: absolute;
+    padding: 4px;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.bingoboss {
+    max-height: 50px;
+    max-width: 50px;
+    position: absolute;
+    justify-self: end;
+    align-self: end;
+    z-index: 5;
 }
