@@ -50,25 +50,39 @@ button {
 }
 
 .griditem {
+    border: 1px solid #EEEDEE;
+    position: relative;
+    display: flex;
+}
+
+.gridcontent {
     height: 100px;
     width: 100px;
-    border: 1px solid #EEEDEE;
+    display: flex;
 }
 
-.bingoitem {
+.big {
+    justify-content: center;
+    align-items: center;
+}
+
+.small {
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+}
+
+.big img {
     max-height: 92px;
     max-width: 92px;
-    position: absolute;
     padding: 4px;
-    object-fit: contain;
-    z-index: 1;
+    position: absolute;
 }
 
-.bingoboss {
-    max-height: 50px;
-    max-width: 50px;
-    position: absolute;
-    justify-self: end;
-    align-self: end;
+.small img {
+    max-height: 46px;
+    max-width: 46px;
     z-index: 5;
+    padding: 4px;
+    position: absolute;
 }
