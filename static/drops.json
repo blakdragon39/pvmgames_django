@@ -478,5 +478,29 @@
     "boss_file": "olm.png",
     "drop_rate": 100,
     "slayer_level": 85
+  },
+  {
+    "name": "Dragon Axe",
+    "boss": "Dagannoth Prime",
+    "item_file": "dragon_axe.png",
+    "boss_file": "dagannoth_prime.png",
+    "drop_rate": 128,
+    "slayer_level": 0
+  },
+  {
+    "name": "Dragon Axe",
+    "boss": "Dagannoth Rex",
+    "item_file": "dragon_axe.png",
+    "boss_file": "dagannoth_rex.png",
+    "drop_rate": 128,
+    "slayer_level": 0
+  },
+  {
+    "name": "Dragon Axe",
+    "boss": "Dagannoth Supreme",
+    "item_file": "dragon_axe.png",
+    "boss_file": "dagannoth_supreme.png",
+    "drop_rate": 128,
+    "slayer_level": 0
   }
 ]

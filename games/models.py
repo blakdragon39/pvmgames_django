@@ -19,7 +19,10 @@ class Boss(models.Model):
     def get_image(self):
         return 'bosses/' + self._image
 
-    image = property(get_image)
+    def set_image(self, image):
+        self._image = image
+
+    image = property(get_image, set_image)
 
     def __unicode__(self):
         return self.name
@@ -32,23 +35,24 @@ class Item(models.Model):
     def get_image(self):
         return 'items/' + self._image
 
-    image = property(get_image)
+    def set_image(self, image):
+        self._image = image
+
+    image = property(get_image, set_image)
 
     def __unicode__(self):
         return self.name
 
 
 class Drop(models.Model):
-    boss = models.ForeignKey(Boss, null=True, on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, null=True, on_delete=models.CASCADE)
+    main = models.ForeignKey(Item, null=True, on_delete=models.CASCADE)
+    sub = models.ForeignKey(Boss, null=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
-        if self.boss and self.item:
-            return str(self.item) + ' - ' + str(self.boss)
-        elif self.item:
-            return str(self.item)
-        elif self.boss:
-            return str(self.boss)
+        if self.main and self.sub:
+            return str(self.main) + ' - ' + str(self.sub)
+        elif self.main:
+            return str(self.main)
 
 
 class GameCard(models.Model):

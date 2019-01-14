@@ -18,22 +18,22 @@ class Command(BaseCommand):
                 item = add_item(item_name, item_file)
                 boss = add_boss(boss_name, boss_file)
                 print 'Adding ' + str(item) + ' - ' + str(boss)
-                Drop.objects.create(item=item, boss=boss)
+                Drop.objects.create(main=item, sub=boss)
 
 
 def add_item(name, image):
     try:
-        item = Item.objects.create(name=name, image=image)
-    except:
         item = Item.objects.get(name=name)
+    except:
+        item = Item.objects.create(name=name, image=image)
 
     return item
 
 
 def add_boss(name, image):
     try:
-        boss = Boss.objects.create(name=name, image=image)
-    except:
         boss = Boss.objects.get(name=name)
+    except:
+        boss = Boss.objects.create(name=name, image=image)
 
     return boss
