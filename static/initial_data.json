@@ -149,7 +149,7 @@
       "file": "archers_ring.png"
     },
     {
-      "name": "Armadyl Chestplate",
+      "name": "Armadyl Chainskirt",
       "file": "armadyl_chainskirt.png"
     },
     {
@@ -195,6 +195,10 @@
     {
       "name": "Dragon 2h Sword",
       "file": "dragon_2h_sword.png"
+    },
+    {
+      "name": "Dragon Axe",
+      "file": "dragon_axe.png"
     },
     {
       "name": "Dragon Chainbody",
@@ -574,17 +578,17 @@
     {
       "boss": "Thermonuclear Smoke Devil",
       "item": "Smoke Battlestaff",
-      "drop_Rate": 512
+      "drop_rate": 512
     },
     {
       "boss": "Thermonuclear Smoke Devil",
       "item": "Occult Necklace",
-      "drop_Rate": 350
+      "drop_rate": 350
     },
     {
       "boss": "Thermonuclear Smoke Devil",
       "item": "Dragon Chainbody",
-      "drop_Rate": 2000
+      "drop_rate": 2000
     },
     {
       "boss": "King Black Dragon",

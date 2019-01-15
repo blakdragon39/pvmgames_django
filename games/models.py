@@ -41,6 +41,7 @@ class Item(RunescapeEntity):
 class Drop(models.Model):
     item = models.ForeignKey(Item, null=False, on_delete=models.CASCADE)
     boss = models.ForeignKey(Boss, null=False, on_delete=models.CASCADE)
+    drop_rate = models.IntegerField(null=False)
 
     def __unicode__(self):
         if self.item and self.boss:
