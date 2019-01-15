@@ -1,16 +1,17 @@
 import random
 
-from games.models import Drop
+from games.models import Drop, BingoCard, Item, Boss
 
 
-def new_bingo_card():
-    drops = list(Drop.objects.all())
-    card_drops = []
+def new_bingo_card(user, items, bosses, wilderness_bosses, slayer_bosses, slayer_level, free_space):
+    entities = []
 
-    for i in range(25):
-        length = len(drops) - 1
-        drop_i = random.randint(1, length)
-        drop = drops.pop(drop_i)
-        card_drops.append(drop)
+    if items and bosses:
+        entities = Drop.objects.all()
+    elif items:
+        entities = Item.objects.all()
+    elif bosses:
+        entities = Boss.objects.all()
 
-    return card_drops
+    card = BingoCard.objects.create(user=user)  # todo all 25 spaces
+    return card

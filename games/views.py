@@ -9,34 +9,21 @@ from games.models import BingoCard
 
 
 @login_required
-def new_card(request):
-    card_drops = new_bingo_card()
-    card = BingoCard.objects.create(user=request.user,
-                                    square1=card_drops[0],
-                                    square2=card_drops[1],
-                                    square3=card_drops[2],
-                                    square4=card_drops[3],
-                                    square5=card_drops[4],
-                                    square6=card_drops[5],
-                                    square7=card_drops[6],
-                                    square8=card_drops[7],
-                                    square9=card_drops[8],
-                                    square10=card_drops[9],
-                                    square11=card_drops[10],
-                                    square12=card_drops[11],
-                                    square13=card_drops[12],
-                                    square14=card_drops[13],
-                                    square15=card_drops[14],
-                                    square16=card_drops[15],
-                                    square17=card_drops[16],
-                                    square18=card_drops[17],
-                                    square19=card_drops[18],
-                                    square20=card_drops[19],
-                                    square21=card_drops[20],
-                                    square22=card_drops[21],
-                                    square23=card_drops[22],
-                                    square24=card_drops[23],
-                                    square25=card_drops[24])
+def new_card(request, **kwargs):
+    items = request.GET.get('items', False)
+    bosses = request.GET.get('bosses', False)
+    wilderness = request.GET.get('wilderness', True)
+    slayer = request.GET.get('slayer', True)
+    slayer_level = request.GET.get('slayer_level', 99)
+    free_space = request.GET.get('free_space', True)
+
+    card = new_bingo_card(user=request.user,
+                          items=items,
+                          bosses=bosses,
+                          wilderness_bosses=wilderness,
+                          slayer_bosses=slayer,
+                          slayer_level=slayer_level,
+                          free_space=free_space)
 
     return redirect('bingo-card', id=card.id)
 

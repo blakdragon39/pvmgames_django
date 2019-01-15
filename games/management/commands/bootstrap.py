@@ -18,7 +18,7 @@ class Command(BaseCommand):
                 item = add_item(item_name, item_file)
                 boss = add_boss(boss_name, boss_file)
                 print 'Adding ' + str(item) + ' - ' + str(boss)
-                Drop.objects.create(main=item, sub=boss)
+                Drop.objects.create(item=item, boss=boss)
 
 
 def add_item(name, image):
