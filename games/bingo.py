@@ -23,7 +23,7 @@ def new_bingo_card(user, items, bosses, wilderness_bosses, slayer_bosses, slayer
 
     card_items = []
     for i in range(25):
-        if i == 13 and free_space:
+        if i == 12 and free_space:
             card_items.append(None)
         else:
             index = random.randint(0, len(entities) - 1)
@@ -78,8 +78,8 @@ def create_new_combo_card(user, card_items):
                                     square11_sub=card_items[10].boss,
                                     square12_main=card_items[11].item,
                                     square12_sub=card_items[11].boss,
-                                    square13_main=card_items[12].item,
-                                    square13_sub=card_items[12].boss,
+                                    square13_main=card_items[12].item if card_items[12] is not None else None,
+                                    square13_sub=card_items[12].boss if card_items[12] is not None else None,
                                     square14_main=card_items[13].item,
                                     square14_sub=card_items[13].boss,
                                     square15_main=card_items[14].item,
@@ -120,7 +120,7 @@ def create_new_simple_card(user, card_items):
                                     square10_main=card_items[9],
                                     square11_main=card_items[10],
                                     square12_main=card_items[11],
-                                    square13_main=card_items[12],
+                                    square13_main=card_items[12] if card_items[12] is not None else None,
                                     square14_main=card_items[13],
                                     square15_main=card_items[14],
                                     square16_main=card_items[15],
