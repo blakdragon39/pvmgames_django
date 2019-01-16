@@ -30,9 +30,9 @@ def new_bingo_card(user, items, bosses, wilderness_bosses, slayer_bosses, slayer
             card_items.append(entities.pop(index))
 
     if items and bosses:
-        return create_new_drops_card(user, card_items)
+        return create_new_combo_card(user, card_items)
     else:
-        return create_new_entity_card(user, card_items)
+        return create_new_simple_card(user, card_items)
 
 
 def get_unique_items(drops):
@@ -52,7 +52,7 @@ def get_bosses(drops):
     return bosses
 
 
-def create_new_drops_card(user, card_items):
+def create_new_combo_card(user, card_items):
     return BingoCard.objects.create(user=user,
                                     square1_main=card_items[0].item,
                                     square1_sub=card_items[0].boss,
@@ -104,3 +104,32 @@ def create_new_drops_card(user, card_items):
                                     square24_sub=card_items[23].boss,
                                     square25_main=card_items[24].item,
                                     square25_sub=card_items[24].boss)
+
+
+def create_new_simple_card(user, card_items):
+    return BingoCard.objects.create(user=user,
+                                    square1_main=card_items[0],
+                                    square2_main=card_items[1],
+                                    square3_main=card_items[2],
+                                    square4_main=card_items[3],
+                                    square5_main=card_items[4],
+                                    square6_main=card_items[5],
+                                    square7_main=card_items[6],
+                                    square8_main=card_items[7],
+                                    square9_main=card_items[8],
+                                    square10_main=card_items[9],
+                                    square11_main=card_items[10],
+                                    square12_main=card_items[11],
+                                    square13_main=card_items[12],
+                                    square14_main=card_items[13],
+                                    square15_main=card_items[14],
+                                    square16_main=card_items[15],
+                                    square17_main=card_items[16],
+                                    square18_main=card_items[17],
+                                    square19_main=card_items[18],
+                                    square20_main=card_items[19],
+                                    square21_main=card_items[20],
+                                    square22_main=card_items[21],
+                                    square23_main=card_items[22],
+                                    square24_main=card_items[23],
+                                    square25_main=card_items[24])
