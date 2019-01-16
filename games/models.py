@@ -16,14 +16,6 @@ class RunescapeEntity(PolymorphicModel):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
     _image = models.CharField(max_length=100, null=False, blank=False)
 
-    def get_image(self):
-        return 'bosses/' + self._image
-
-    def set_image(self, image):
-        self._image = image
-
-    image = property(get_image, set_image)
-
     def __unicode__(self):
         return self.name
 
@@ -33,9 +25,23 @@ class Boss(RunescapeEntity):
     slayer = models.BooleanField(null=False)
     slayer_level = models.IntegerField()
 
+    def get_image(self):
+        return 'bosses/' + self._image
+
+    def set_image(self, image):
+        self._image = image
+
+    image = property(get_image, set_image)
+
 
 class Item(RunescapeEntity):
-    pass
+    def get_image(self):
+        return 'items/' + self._image
+
+    def set_image(self, image):
+        self._image = image
+
+    image = property(get_image, set_image)
 
 
 class Drop(models.Model):
