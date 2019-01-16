@@ -14,6 +14,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from games.urls import game_urls
 from login.urls import login_urls
 
 urlpatterns = [
@@ -21,3 +22,4 @@ urlpatterns = [
 ]
 
 urlpatterns.extend(login_urls)
+urlpatterns.extend(game_urls)

@@ -1,0 +1,679 @@
+{
+  "bosses": [
+    {
+      "name": "Abyssal Sire",
+      "file": "abyssal_sire.png",
+      "wilderness": false,
+      "slayer_level": 85
+    },
+    {
+      "name": "Callisto",
+      "file": "callisto.png",
+      "wilderness": true,
+      "slayer_level": 0
+    },
+    {
+      "name": "Cerberus",
+      "file": "cerberus.png",
+      "wilderness": false,
+      "slayer_level": 91
+    },
+    {
+      "name": "Chaos Elemental",
+      "file": "chaos_elemental.png",
+      "wilderness": true,
+      "slayer_level": 0
+    },
+    {
+      "name": "Commander Zilyana",
+      "file": "zilyana.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Dagannoth Prime",
+      "file": "dagannoth_prime.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Dagannoth Rex",
+      "file": "dagannoth_rex.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Dagannoth Supreme",
+      "file": "dagannoth_supreme.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "General Graardor",
+      "file": "graardor.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Grotesque Guardians",
+      "file": "grotesque_guardians.png",
+      "wilderness": false,
+      "slayer_level": 75
+    },
+    {
+      "name": "Kalphite Queen",
+      "file": "kalphite_queen.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "King Black Dragon",
+      "file": "king_black_dragon.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Kraken",
+      "file": "kraken.png",
+      "wilderness": false,
+      "slayer_level": 87
+    },
+    {
+      "name": "Kree'Arra",
+      "file": "kreearra.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Kril Tsutsaroth",
+      "file": "kril_tsutsaroth.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Scorpia",
+      "file": "scorpia.png",
+      "wilderness": true,
+      "slayer_level": 0
+    },
+    {
+      "name": "Thermonuclear Smoke Devil",
+      "file": "thermonuclear_smoke_devil.png",
+      "wilderness": false,
+      "slayer_level": 93
+    },
+    {
+      "name": "Venenatis",
+      "file": "venenatis.png",
+      "wilderness": true,
+      "slayer_level": 0
+    },
+    {
+      "name": "Vet'ion",
+      "file": "vetion.png",
+      "wilderness": true,
+      "slayer_level": 0
+    },
+    {
+      "name": "Vorkath",
+      "file": "vorkath.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
+      "name": "Zulrah",
+      "file": "zulrah.png",
+      "wilderness": false,
+      "slayer_level": 0
+    }
+  ],
+  "items": [
+    {
+      "name": "Abyssal Bludgeon",
+      "file": "abyssal_bludgeon.png"
+    },
+    {
+      "name": "Abyssal Dagger",
+      "file": "abyssal_dagger.png"
+    },
+    {
+      "name": "Abyssal Head",
+      "file": "abyssal_head.png"
+    },
+    {
+      "name": "Abyssal Whip",
+      "file": "abyssal_whip.png"
+    },
+    {
+      "name": "Archers Ring",
+      "file": "archers_ring.png"
+    },
+    {
+      "name": "Armadyl Chainskirt",
+      "file": "armadyl_chainskirt.png"
+    },
+    {
+      "name": "Armadyl Chestplate",
+      "file": "armadyl_chestplate.png"
+    },
+    {
+      "name": "Armadyl Crossbow",
+      "file": "armadyl_crossbow.png"
+    },
+    {
+      "name": "Armadyl Helmet",
+      "file": "armadyl_helmet.png"
+    },
+    {
+      "name": "Armadyl Hilt",
+      "file": "armadyl_hilt.png"
+    },
+    {
+      "name": "Bandos Boots",
+      "file": "bandos_boots.png"
+    },
+    {
+      "name": "Bandos Chestplate",
+      "file": "bandos_chestplate.png"
+    },
+    {
+      "name": "Bandos Hilt",
+      "file": "bandos_hilt.png"
+    },
+    {
+      "name": "Bandos Tassets",
+      "file": "bandos_tassets.png"
+    },
+    {
+      "name": "Berserker Ring",
+      "file": "berserker_ring.png"
+    },
+    {
+      "name": "Black Tourmaline Core",
+      "file": "black_tourmaline_core.png"
+    },
+    {
+      "name": "Dragon 2h Sword",
+      "file": "dragon_2h_sword.png"
+    },
+    {
+      "name": "Dragon Axe",
+      "file": "dragon_axe.png"
+    },
+    {
+      "name": "Dragon Chainbody",
+      "file": "dragon_chainbody.png"
+    },
+    {
+      "name": "Dragon Pickaxe",
+      "file": "dragon_pickaxe.png"
+    },
+    {
+      "name": "Dragonbone Necklace",
+      "file": "dragonbone_necklace.png"
+    },
+    {
+      "name": "Eternal Crystal",
+      "file": "eternal_crystal.png"
+    },
+    {
+      "name": "Granite Gloves",
+      "file": "granite_gloves.png"
+    },
+    {
+      "name": "Granite Hammer",
+      "file": "granite_hammer.png"
+    },
+    {
+      "name": "Granite Ring",
+      "file": "granite_ring.png"
+    },
+    {
+      "name": "KBD Heads",
+      "file": "kbd_heads.png"
+    },
+    {
+      "name": "KQ Head",
+      "file": "kq_head.png"
+    },
+    {
+      "name": "Kraken Tentacle",
+      "file": "kraken_tentacle.png"
+    },
+    {
+      "name": "Magic Fang",
+      "file": "magic_fang.png"
+    },
+    {
+      "name": "Malediction Shard 3",
+      "file": "malediction_shard_3.png"
+    },
+    {
+      "name": "Mud Battlestaff",
+      "file": "mud_battlestaff.png"
+    },
+    {
+      "name": "Odium Shard 3",
+      "file": "odium_shard_3.png"
+    },
+    {
+      "name": "Occult Necklace",
+      "file": "occult_necklace.png"
+    },
+    {
+      "name": "Pegasian Crystal",
+      "file": "pegasian_crystal.png"
+    },
+    {
+      "name": "Primordial Crystal",
+      "file": "primordial_crystal.png"
+    },
+    {
+      "name": "Ring of the Gods",
+      "file": "ring_of_the_gods.png"
+    },
+    {
+      "name": "Saradomin Hilt",
+      "file": "saradomin_hilt.png"
+    },
+    {
+      "name": "Saradomin Sword",
+      "file": "saradomin_sword.png"
+    },
+    {
+      "name": "Saradomin's Light",
+      "file": "saradomins_light.png"
+    },
+    {
+      "name": "Seercull",
+      "file": "seercull.png"
+    },
+    {
+      "name": "Seers Ring",
+      "file": "seers_ring"
+    },
+    {
+      "name": "Serpentine Visage",
+      "file": "serpentine_visage.png"
+    },
+    {
+      "name": "Smoke Battlestaff",
+      "file": "smoke_battlestaff.png"
+    },
+    {
+      "name": "Smouldering Stone",
+      "file": "smouldering_stone.png"
+    },
+    {
+      "name": "Staff of the Dead",
+      "file": "staff_of_the_dead.png"
+    },
+    {
+      "name": "Steam Battlestaff",
+      "file": "steam_battlestaff.png"
+    },
+    {
+      "name": "Tanzanite Fang",
+      "file": "tanzanite_fang.png"
+    },
+    {
+      "name": "Trident of the Seas",
+      "file": "trident_of_the_seas.png"
+    },
+    {
+      "name": "Treasonous Ring",
+      "file": "treasonous_ring.png"
+    },
+    {
+      "name": "Tyrannical Ring",
+      "file": "tyrannical_ring.png"
+    },
+    {
+      "name": "Uncut Onyx",
+      "file": "uncut_onyx.png"
+    },
+    {
+      "name": "Unsired",
+      "file": "unsired.png"
+    },
+    {
+      "name": "Warrior Ring",
+      "file": "warrior_ring.png"
+    },
+    {
+      "name": "Zamorak Hilt",
+      "file": "zamorak_hilt.png"
+    },
+    {
+      "name": "Zamorakian Spear",
+      "file": "zamorakian_spear.png"
+    }
+  ],
+  "drops": [
+    {
+      "boss": "Vorkath",
+      "item": "Dragonbone Necklace",
+      "drop_rate": 1000
+    },
+    {
+      "boss": "Callisto",
+      "item": "Tyrannical Ring",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Kalphite Queen",
+      "item": "Dragon Chainbody",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Kalphite Queen",
+      "item": "Dragon 2h Sword",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Kalphite Queen",
+      "item": "KQ Head",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Prime",
+      "item": "Seers Ring",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Prime",
+      "item": "Mud Battlestaff",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Rex",
+      "item": "Warrior Ring",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Rex",
+      "item": "Berserker Ring",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Supreme",
+      "item": "Seercull",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Supreme",
+      "item": "Archers Ring",
+      "drop_rate": 128
+    },
+    {
+      "boss": "General Graardor",
+      "item": "Bandos Hilt",
+      "drop_rate": 508
+    },
+    {
+      "boss": "General Graardor",
+      "item": "Bandos Boots",
+      "drop_rate": 384
+    },
+    {
+      "boss": "General Graardor",
+      "item": "Bandos Chestplate",
+      "drop_rate": 384
+    },
+    {
+      "boss": "General Graardor",
+      "item": "Bandos Tassets",
+      "drop_rate": 384
+    },
+    {
+      "boss": "Kril Tsutsaroth",
+      "item": "Staff of the Dead",
+      "drop_rate": 508
+    },
+    {
+      "boss": "Kril Tsutsaroth",
+      "item": "Zamorak Hilt",
+      "drop_rate": 508
+    },
+    {
+      "boss": "Kril Tsutsaroth",
+      "item": "Steam Battlestaff",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Kril Tsutsaroth",
+      "item": "Zamorakian Spear",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Kree'Arra",
+      "item": "Armadyl Hilt",
+      "drop_rate": 508
+    },
+    {
+      "boss": "Kree'Arra",
+      "item": "Armadyl Helmet",
+      "drop_rate": 508
+    },
+    {
+      "boss": "Kree'Arra",
+      "item": "Armadyl Chestplate",
+      "drop_rate": 384
+    },
+    {
+      "boss": "Kree'Arra",
+      "item": "Armadyl Chainskirt",
+      "drop_rate": 384
+    },
+    {
+      "boss": "Commander Zilyana",
+      "item": "Saradomin Hilt",
+      "drop_rate": 508
+    },
+    {
+      "boss": "Commander Zilyana",
+      "item": "Saradomin Sword",
+      "drop_rate": 127
+    },
+    {
+      "boss": "Commander Zilyana",
+      "item": "Armadyl Crossbow",
+      "drop_rate": 508
+    },
+    {
+      "boss": "Commander Zilyana",
+      "item": "Saradomin's Light",
+      "drop_rate": 254
+    },
+    {
+      "boss": "Zulrah",
+      "item": "Uncut Onyx",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Zulrah",
+      "item": "Tanzanite Fang",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Zulrah",
+      "item": "Magic Fang",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Zulrah",
+      "item": "Serpentine Visage",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Venenatis",
+      "item": "Treasonous Ring",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Callisto",
+      "item": "Dragon 2h Sword",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Callisto",
+      "item": "Dragon Pickaxe",
+      "drop_rate": 171
+    },
+    {
+      "boss": "Vet'ion",
+      "item": "Ring of the Gods",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Vet'ion",
+      "item": "Dragon 2h Sword",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Vet'ion",
+      "item": "Dragon Pickaxe",
+      "drop_rate": 171
+    },
+    {
+      "boss": "Venenatis",
+      "item": "Dragon 2h Sword",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Venenatis",
+      "item": "Dragon Pickaxe",
+      "drop_rate": 171
+    },
+    {
+      "boss": "Grotesque Guardians",
+      "item": "Granite Gloves",
+      "drop_rate": 500
+    },
+    {
+      "boss": "Grotesque Guardians",
+      "item": "Granite Ring",
+      "drop_rate": 500
+    },
+    {
+      "boss": "Grotesque Guardians",
+      "item": "Black Tourmaline Core",
+      "drop_rate": 1000
+    },
+    {
+      "boss": "Grotesque Guardians",
+      "item": "Granite Hammer",
+      "drop_rate": 750
+    },
+    {
+      "boss": "Kraken",
+      "item": "Kraken Tentacle",
+      "drop_rate": 300
+    },
+    {
+      "boss": "Kraken",
+      "item": "Trident of the Seas",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Thermonuclear Smoke Devil",
+      "item": "Smoke Battlestaff",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Thermonuclear Smoke Devil",
+      "item": "Occult Necklace",
+      "drop_rate": 350
+    },
+    {
+      "boss": "Thermonuclear Smoke Devil",
+      "item": "Dragon Chainbody",
+      "drop_rate": 2000
+    },
+    {
+      "boss": "King Black Dragon",
+      "item": "Dragon Pickaxe",
+      "drop_rate": 1500
+    },
+    {
+      "boss": "King Black Dragon",
+      "item": "KBD Heads",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Chaos Elemental",
+      "item": "Dragon 2h Sword",
+      "drop_rate" : 128
+    },
+    {
+      "boss": "Chaos Elemental",
+      "item": "Dragon Pickaxe",
+      "drop_rate" : 128
+    },
+    {
+      "boss": "Scorpia",
+      "item": "Malediction Shard 3",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Scorpia",
+      "item": "Odium Shard 3",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Cerberus",
+      "item": "Primordial Crystal",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Cerberus",
+      "item": "Pegasian Crystal",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Cerberus",
+      "item": "Eternal Crystal",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Cerberus",
+      "item": "Smouldering Stone",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Abyssal Sire",
+      "item": "Abyssal Bludgeon",
+      "drop_rate": 206
+    },
+    {
+      "boss": "Abyssal Sire",
+      "item": "Abyssal Dagger",
+      "drop_rate": 492
+    },
+    {
+      "boss": "Abyssal Sire",
+      "item": "Abyssal Head",
+      "drop_rate": 1280
+    },
+    {
+      "boss": "Abyssal Sire",
+      "item": "Abyssal Whip",
+      "drop_rate": 1066
+    },
+    {
+      "boss": "Dagannoth Prime",
+      "item": "Dragon Axe",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Rex",
+      "item": "Dragon Axe",
+      "drop_rate": 128
+    },
+    {
+      "boss": "Dagannoth Supreme",
+      "item": "Dragon Axe",
+      "drop_rate": 128
+    }
+  ]
+}

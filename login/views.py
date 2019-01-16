@@ -6,14 +6,7 @@ from login.forms import SignUpForm
 
 
 def home(request):
-    if request.user.is_authenticated:
-        context = {
-            'display_name': request.user.first_name
-        }
-    else:
-        context = {}
-
-    return render(request, 'base.html', context)
+    return render(request, 'home.html')
 
 
 def signup(request):
