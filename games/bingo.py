@@ -14,5 +14,29 @@ def new_bingo_card(user, items, bosses, wilderness_bosses, slayer_bosses, slayer
 
     drops = drops.filter(boss__slayer_level__lte=slayer_level)
 
+    if items and bosses:
+        entities = drops
+    elif items:
+        entities = get_unique_items(drops)
+    else:
+        entities = get_bosses(drops)
+
+    for entity in entities:
+        print entity
+
+
+def get_unique_items(drops):
+    items = []
     for drop in drops:
-        print drop
+        if drop.item not in items:
+            items.append(drop.item)
+
+    return items
+
+
+def get_bosses(drops):
+    bosses = []
+    for drop in drops:
+        bosses.append(drop.boss)
+
+    return bosses

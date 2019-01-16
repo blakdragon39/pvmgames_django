@@ -15,23 +15,22 @@ def new_card(request, **kwargs):
         form = NewCardForm(request.POST)
         if form.is_valid():
             entity_choice = form.cleaned_data.get('entity_choice')
-            print entity_choice
-            # items = request.GET.get('items', False)
-            # bosses = request.GET.get('bosses', False)
-            # wilderness = request.GET.get('wilderness', True)
-            # slayer = request.GET.get('slayer', True)
-            # slayer_level = request.GET.get('slayer_level', 99)
-            # free_space = request.GET.get('free_space', True)
-            #
-            # card = new_bingo_card(user=request.user,
-            #                       items=items,
-            #                       bosses=bosses,
-            #                       wilderness_bosses=wilderness,
-            #                       slayer_bosses=slayer,
-            #                       slayer_level=slayer_level,
-            #                       free_space=free_space)
-            #
-            # return redirect('bingo-card', id=card.id)
+            items = entity_choice == 'ITEMS' or entity_choice == 'BOTH'
+            bosses = entity_choice == 'BOSSES' or entity_choice == 'BOTH'
+            wilderness = form.cleaned_data.get('wilderness')
+            slayer = form.cleaned_data.get('slayer')
+            slayer_level = form.cleaned_data.get('slayer_level')
+            free_space = form.cleaned_data.get('free_space')
+
+            card = new_bingo_card(user=request.user,
+                                  items=items,
+                                  bosses=bosses,
+                                  wilderness_bosses=wilderness,
+                                  slayer_bosses=slayer,
+                                  slayer_level=slayer_level,
+                                  free_space=free_space)
+
+            return redirect('bingo-card', id=card.id)
     else:
         form = NewCardForm()
 
