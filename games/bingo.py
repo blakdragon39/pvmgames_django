@@ -4,14 +4,15 @@ from games.models import Drop, BingoCard, Item, Boss
 
 
 def new_bingo_card(user, items, bosses, wilderness_bosses, slayer_bosses, slayer_level, free_space):
-    entities = []
+    drops = Drop.objects.all()
 
-    if items and bosses:
-        entities = Drop.objects.all()
-    elif items:
-        entities = Item.objects.all()
-    elif bosses:
-        entities = Boss.objects.all()
+    if not wilderness_bosses:
+        drops = drops.filter(boss__wilderness=False)
 
-    card = BingoCard.objects.create(user=user)  # todo all 25 spaces
-    return card
+    if not slayer_bosses:
+        drops = drops.filter(boss__slayer_level=0)
+
+    drops = drops.filter(boss__slayer_level__lte=slayer_level)
+
+    for drop in drops:
+        print drop
