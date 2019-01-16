@@ -1,12 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django import template
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from games.bingo import new_bingo_card
 from games.forms import NewCardForm
 from games.models import BingoCard
+
+
+register = template.Library()
+
+
+@register.filter()
+def range(min=5):
+    return range(min)
 
 
 @login_required

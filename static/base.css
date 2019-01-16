@@ -60,6 +60,14 @@ button {
     display: flex;
 }
 
+.griditem .freespace {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .gridcontent {
     height: 100px;
     width: 100px;

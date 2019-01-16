@@ -7,201 +7,255 @@
         <div class="gridcontent big">
             <img src="{% static card.square1_main.image %}"/>
         </div>
+        {% if card.square1_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square1_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_2">
         <div class="gridcontent big">
             <img src="{% static card.square2_main.image %}"/>
         </div>
+        {% if card.square2_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square2_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_3">
         <div class="gridcontent big">
             <img src="{% static card.square3_main.image %}"/>
         </div>
+        {% if card.square3_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square3_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_4">
         <div class="gridcontent big">
             <img src="{% static card.square4_main.image %}"/>
         </div>
+        {% if card.square4_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square4_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_5">
         <div class="gridcontent big">
             <img src="{% static card.square5_main.image %}"/>
         </div>
+        {% if card.square5_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square5_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_6">
         <div class="gridcontent big">
             <img src="{% static card.square6_main.image %}"/>
         </div>
+        {% if card.square6_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square6_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_7">
         <div class="gridcontent big">
             <img src="{% static card.square7_main.image %}"/>
         </div>
+        {% if card.square7_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square7_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_8">
         <div class="gridcontent big">
             <img src="{% static card.square8_main.image %}"/>
         </div>
+        {% if card.square8_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square8_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_9">
         <div class="gridcontent big">
             <img src="{% static card.square9_main.image %}"/>
         </div>
+        {% if card.square9_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square9_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_10">
         <div class="gridcontent big">
             <img src="{% static card.square10_main.image %}"/>
         </div>
+        {% if card.square10_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square10_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_11">
         <div class="gridcontent big">
             <img src="{% static card.square11_main.image %}"/>
         </div>
+        {% if card.square11_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square11_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_12">
         <div class="gridcontent big">
             <img src="{% static card.square12_main.image %}"/>
         </div>
+        {% if card.square13_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square12_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_13">
-        <div class="gridcontent big">
-            <img src="{% static card.square13_main.image %}"/>
-        </div>
-        <div class="gridcontent small">
-            <img src="{% static card.square13_sub.image %}"/>
-        </div>
+        {% if card.square13_main %}
+            <div class="gridcontent big">
+                <img src="{% static card.square13_main.image %}"/>
+            </div>
+            {% if card.square13_sub %}
+            <div class="gridcontent small">
+                <img src="{% static card.square13_sub.image %}"/>
+            </div>
+            {% endif %}
+        {% else %}
+            <p class="freespace">Free Space</p>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_14">
         <div class="gridcontent big">
             <img src="{% static card.square14_main.image %}"/>
         </div>
+        {% if card.square14_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square14_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_15">
         <div class="gridcontent big">
             <img src="{% static card.square15_main.image %}"/>
         </div>
+        {% if card.square15_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square15_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_16">
         <div class="gridcontent big">
             <img src="{% static card.square16_main.image %}"/>
         </div>
+        {% if card.square16_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square16_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_17">
         <div class="gridcontent big">
             <img src="{% static card.square17_main.image %}"/>
         </div>
+        {% if card.square17_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square17_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_18">
         <div class="gridcontent big">
             <img src="{% static card.square18_main.image %}"/>
         </div>
+        {% if card.square18_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square18_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_19">
         <div class="gridcontent big">
             <img src="{% static card.square19_main.image %}"/>
         </div>
+        {% if card.square19_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square19_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_20">
         <div class="gridcontent big">
             <img src="{% static card.square20_main.image %}"/>
         </div>
+        {% if card.square20_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square20_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_21">
         <div class="gridcontent big">
             <img src="{% static card.square21_main.image %}"/>
         </div>
+        {% if card.square21_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square21_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_22">
         <div class="gridcontent big">
             <img src="{% static card.square22_main.image %}"/>
         </div>
+        {% if card.square22_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square22_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_23">
         <div class="gridcontent big">
             <img src="{% static card.square23_main.image %}"/>
         </div>
+        {% if card.square23_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square23_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_24">
         <div class="gridcontent big">
             <img src="{% static card.square24_main.image %}"/>
         </div>
+        {% if card.square24_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square24_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
     <div class="griditem" id="bingo_square_25">
         <div class="gridcontent big">
             <img src="{% static card.square25_main.image %}"/>
         </div>
+        {% if card.square25_sub %}
         <div class="gridcontent small">
             <img src="{% static card.square25_sub.image %}"/>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
