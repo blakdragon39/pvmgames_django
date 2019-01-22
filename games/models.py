@@ -12,6 +12,23 @@ from polymorphic.models import PolymorphicModel
 '''
 
 
+class Competition(PolymorphicModel):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, null=False, blank=False)
+
+
+class BingoCompetition(Competition):
+    BINGO_TYPES = [
+        ('ITEMS', 'Items'),
+        ('BOSSES', 'Bosses'),
+        ('BOTH', 'Items and Bosses')
+    ]
+    type = models.CharField(max_length=100, choices=BINGO_TYPES, null=False, blank=False)
+    wilderness = models.BooleanField(null=False)
+    slayer = models.BooleanField(null=False)
+    free_space = models.BooleanField(null=False)
+
+
 class RunescapeEntity(PolymorphicModel):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
     _image = models.CharField(max_length=100, null=False, blank=False)
@@ -59,7 +76,7 @@ class Drop(models.Model):
 
 
 class GameCard(models.Model):
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    competition = models.ForeignKey(Competition, null=False, on_delete=models.CASCADE, related_name='game_cards')
 
 
 class BingoCard(GameCard):

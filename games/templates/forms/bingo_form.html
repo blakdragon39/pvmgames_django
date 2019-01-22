@@ -1,0 +1,20 @@
+<form method="post">
+    {% csrf_token %}
+    {{ bingo_form.non_field_errors }}
+    <div class="formfield">
+        <label for="{{ bingo_form.entity_choice.id_for_label }}">Squares contain:</label> {{ bingo_form.entity_choice }}
+        {{ bingo_form.entity_choice.errors }}
+    </div>
+    <div class="formfield">
+        <label for="{{ bingo_form.wilderness.id_for_label }}">Wilderness Bosses: </label> {{ bingo_form.wilderness }}
+        {{ bingo_form.wilderness.errors }}
+    </div>
+    <div class="formfield">
+        <label for="{{ bingo_form.slayer.id_for_label }}">Slayer Bosses: </label> {{ bingo_form.slayer }}
+        {{ bingo_form.slayer.errors }}
+    </div>
+    <div class="formfield">
+        <label for="{{ bingo_form.free_space.id_for_label }}">Free Space: </label> {{ bingo_form.free_space }}
+        {{ bingo_form.free_space.errors }}
+    </div>
+</form> 
