@@ -137,3 +137,31 @@ class BingoCard(GameCard):
 
     square25_main = models.ForeignKey(RunescapeEntity, null=False, on_delete=models.CASCADE, related_name='+')
     square25_sub = models.ForeignKey(RunescapeEntity, null=True, on_delete=models.CASCADE, related_name='+')
+
+    def to_list(self):
+        return [(self.square1_main, self.square1_sub),
+                (self.square2_main, self.square2_sub),
+                (self.square3_main, self.square3_sub),
+                (self.square4_main, self.square4_sub),
+                (self.square5_main, self.square5_sub),
+                (self.square6_main, self.square6_sub),
+                (self.square7_main, self.square7_sub),
+                (self.square8_main, self.square8_sub),
+                (self.square9_main, self.square9_sub),
+                (self.square10_main, self.square10_sub),
+                (self.square11_main, self.square11_sub),
+                (self.square12_main, self.square12_sub),
+                (self.square13_main, self.square13_sub),
+                (self.square14_main, self.square14_sub),
+                (self.square15_main, self.square15_sub),
+                (self.square16_main, self.square16_sub),
+                (self.square17_main, self.square17_sub),
+                (self.square18_main, self.square18_sub),
+                (self.square19_main, self.square19_sub),
+                (self.square20_main, self.square20_sub),
+                (self.square21_main, self.square21_sub),
+                (self.square22_main, self.square22_sub),
+                (self.square23_main, self.square23_sub),
+                (self.square24_main, self.square24_sub),
+                (self.square25_main, self.square25_sub)]
+

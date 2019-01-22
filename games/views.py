@@ -48,5 +48,5 @@ def new_card(request, **kwargs):
 
 def bingo_card(request, **kwargs):
     card = BingoCard.objects.get(id=kwargs['id'])
-    context = {'card': card}
+    context = {'square_list': card.to_list()}
     return render(request, 'bingo_card.html', context)
