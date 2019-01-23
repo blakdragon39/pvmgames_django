@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
+
+<script>
+    {% block listeners %}
+        document.getElementById('id_game_type').addEventListener('change', function () {
+            alert('test')
+        })
+    {% endblock %}
+</script>
+
 {% block content %}
-{{ competition_form.as_p }}
-{% include 'forms/bingo_form.html' %}
-<button type="submit">Start New Competition</button>
+    <div class="formfield">
+        {{ competition_form.as_p }}
+    </div>
+    {% include 'forms/bingo_form.html' %}
+    <button type="submit">Start New Competition</button>
 {% endblock %}
