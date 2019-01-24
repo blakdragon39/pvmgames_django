@@ -2,10 +2,15 @@
 {% load static %}
 
 {% block content %}
-<a href="{% url 'new-competition' %}">Create a new competition</a>
-<br><br>
-<h2>Your Competitions</h2>
-{% for competition in competitions %}
-    <a href="{% url 'competition' competition.id %}">{{ competition.title }}</a>
-{% endfor %}
+    <a href="{% url 'new-competition' %}">Create a new competition</a>
+    <br><br>
+    {% if user.is_authenticated %}
+        <h2>Your Competitions</h2>
+    {% else %}
+        <h2>Running Competitions</h2>
+    {% endif %}
+
+    {% for competition in competitions %}
+        <a href="{% url 'competition' competition.id %}">{{ competition.title }}</a><br>
+    {% endfor %}
 {% endblock %}
