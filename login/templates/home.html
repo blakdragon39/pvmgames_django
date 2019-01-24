@@ -3,4 +3,9 @@
 
 {% block content %}
 <a href="{% url 'new-competition' %}">Create a new competition</a>
+<br><br>
+<h2>Your Competitions</h2>
+{% for competition in competitions %}
+    <a href="{% url 'competition' competition.id %}">{{ competition.title }}</a>
+{% endfor %}
 {% endblock %}

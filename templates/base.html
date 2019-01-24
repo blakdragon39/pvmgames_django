@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet">
-    <link href="{% static 'base.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css"/>
     <title>PvM Games</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -14,10 +14,11 @@
             {% block listeners %}{% endblock %}
         });
     </script>
+    {% block head %}{% endblock %}
 </head>
 
 <body>
-    <h1 class="titlebar title">PvM Games</h1>
+    <h1 class="titlebar title"><a href="{% url 'home' %}">PvM Games</a></h1>
 
     <div class="titlebar login">
     {% if user.is_authenticated %}

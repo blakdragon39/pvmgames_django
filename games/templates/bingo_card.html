@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+<link href="{% static 'css/bingo.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block content %}
 <div class="grid">
 {% for square in square_list %}

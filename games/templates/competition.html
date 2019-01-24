@@ -1,3 +1,10 @@
 {% extends 'base.html' %}
+
 {% block content %}
+<div class="competition">
+    <h2>{{ competition.title }}</h2>
+    {% if user == competition.user %}
+        <a href="{% url 'new-bingo-card' competition.id %}">Add a New Game Card</a>
+    {% endif %}
+</div>
 {% endblock %}

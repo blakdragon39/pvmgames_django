@@ -1,0 +1,51 @@
+/* https://www.color-hex.com/color-palette/70094 */
+
+body {
+    font-family: Verdana, sans-serif;
+    font-size: small;
+    color: #EEEDEE;
+    background-color: #38333D;
+    margin: 0 0 0 0;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: #EEEDEE;
+}
+
+button {
+    padding: 4px 4px 4px 4px;
+}
+
+.titlebar {
+    background-color: #222123;
+}
+
+.title {
+    margin: 0 0 0 0;
+    font-family: 'Charm', cursive;
+    font-weight: 100;
+    font-size: 32px;
+    padding: 8px 8px 8px 16px;
+}
+
+.titlebar a {
+    text-decoration: none;
+}
+
+.login {
+    padding: 0 8px 16px 16px;
+}
+
+.content {
+    margin: 16px 16px 16px 16px;
+}
+
+.formfield {
+    margin: 8px 8px 8px 8px;
+}
+
+.formfield ul {
+    list-style: none;
+    margin: 4px 4px 4px 4px;
+    padding-left: 0;
+}

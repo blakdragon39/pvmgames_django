@@ -1,38 +1,38 @@
 import random
 
-from games.models import Drop, BingoCard, Item, Boss
+from games.models import Drop, BingoCard
 
 
-def new_bingo_card(user, items, bosses, wilderness_bosses, slayer_bosses, slayer_level, free_space):
+def new_bingo_card(competition, user_name, slayer_level):
     drops = Drop.objects.all()
 
-    if not wilderness_bosses:
+    if not competition.wilderness:
         drops = drops.filter(boss__wilderness=False)
 
-    if not slayer_bosses:
+    if not competition.slayer:
         drops = drops.filter(boss__slayer_level=0)
 
     drops = drops.filter(boss__slayer_level__lte=slayer_level)
 
-    if items and bosses:
-        entities = list(drops)
-    elif items:
+    if competition.type == 'ITEMS':
         entities = get_unique_items(drops)
-    else:
+    elif competition.type == 'BOSSES':
         entities = get_bosses(drops)
+    else:
+        entities = list(drops)
 
     card_items = []
     for i in range(25):
-        if i == 12 and free_space:
+        if i == 12 and competition.free_space:
             card_items.append(None)
         else:
             index = random.randint(0, len(entities) - 1)
             card_items.append(entities.pop(index))
 
-    if items and bosses:
-        return create_new_combo_card(user, card_items)
+    if competition.type == 'BOTH':
+        return create_new_combo_card(competition, user_name, card_items)
     else:
-        return create_new_simple_card(user, card_items)
+        return create_new_simple_card(competition, user_name, card_items)
 
 
 def get_unique_items(drops):
@@ -52,8 +52,9 @@ def get_bosses(drops):
     return bosses
 
 
-def create_new_combo_card(user, card_items):
-    return BingoCard.objects.create(user=user,
+def create_new_combo_card(competition, user_name, card_items):
+    return BingoCard.objects.create(competition=competition,
+                                    user_name=user_name,
                                     square1_main=card_items[0].item,
                                     square1_sub=card_items[0].boss,
                                     square2_main=card_items[1].item,
@@ -106,8 +107,9 @@ def create_new_combo_card(user, card_items):
                                     square25_sub=card_items[24].boss)
 
 
-def create_new_simple_card(user, card_items):
-    return BingoCard.objects.create(user=user,
+def create_new_simple_card(competition, user_name, card_items):
+    return BingoCard.objects.create(competition=competition,
+                                    user_name=user_name,
                                     square1_main=card_items[0],
                                     square2_main=card_items[1],
                                     square3_main=card_items[2],

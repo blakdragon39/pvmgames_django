@@ -21,3 +21,8 @@ class BingoForm(forms.Form):
     wilderness = forms.BooleanField(initial=True, required=False)
     slayer = forms.BooleanField(initial=True, required=False)
     free_space = forms.BooleanField(initial=True, required=False)
+
+
+class NewBingoCardForm(forms.Form):
+    user_name = forms.CharField()
+    slayer_level = forms.IntegerField(min_value=1, max_value=99, initial=99)

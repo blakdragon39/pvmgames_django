@@ -71,6 +71,7 @@ class Drop(models.Model):
 
 class GameCard(models.Model):
     competition = models.ForeignKey(Competition, null=False, on_delete=models.CASCADE, related_name='game_cards')
+    user_name = models.CharField(max_length=50, null=False, blank=False)
 
 
 class BingoCard(GameCard):
