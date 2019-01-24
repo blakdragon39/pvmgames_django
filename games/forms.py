@@ -8,6 +8,7 @@ class CompetitionForm(forms.Form):
     ]
 
     game_type = forms.ChoiceField(choices=game_choices)
+    title = forms.CharField(max_length=200, required=True)
 
 
 class BingoForm(forms.Form):

@@ -6,5 +6,8 @@
     {% if user == competition.user %}
         <a href="{% url 'new-bingo-card' competition.id %}">Add a New Game Card</a>
     {% endif %}
+    {% for card in competition.game_cards.all %}
+        <div>{{ card.user_name }}</div>
+    {% endfor %}
 </div>
 {% endblock %}

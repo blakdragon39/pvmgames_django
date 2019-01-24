@@ -17,8 +17,9 @@ def new_competition(request):
 
         if competition_form.is_valid():
             game_type = competition_form.cleaned_data.get('game_type')
+            title = competition_form.cleaned_data.get('title')
             if game_type == 'BINGO' and bingo_form.is_valid():
-                competition = create_bingo_competition(request.user, bingo_form)
+                competition = create_bingo_competition(request.user, title, bingo_form)
                 return redirect('competition', id=competition.id)
 
     else:
@@ -38,14 +39,14 @@ def competition_view(request, **kwargs):
     return render(request, 'competition.html', {'competition': competition})
 
 
-def create_bingo_competition(user, form):
+def create_bingo_competition(user, title, form):
     entity_choice = form.cleaned_data.get('entity_choice')
     wilderness = form.cleaned_data.get('wilderness')
     slayer = form.cleaned_data.get('slayer')
     free_space = form.cleaned_data.get('free_space')
 
     return BingoCompetition.objects.create(user=user,
-                                           title='Bingo Competition',  # todo
+                                           title=title,
                                            type=entity_choice,
                                            wilderness=wilderness,
                                            slayer=slayer,

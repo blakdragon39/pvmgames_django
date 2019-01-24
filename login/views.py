@@ -7,7 +7,6 @@ from login.forms import SignUpForm
 
 
 def home(request):
-    # todo, when user is not authenticated show random competitions
     if request.user.is_authenticated():
         competitions = Competition.objects.filter(user=request.user)
     else:
