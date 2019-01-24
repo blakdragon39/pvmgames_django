@@ -5,12 +5,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from polymorphic.models import PolymorphicModel
 
-'''
-- competition: can have multiple people and is managed by one person
-- game card: 
-    - different games
-'''
-
 
 class Competition(PolymorphicModel):
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)

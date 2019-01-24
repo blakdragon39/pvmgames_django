@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 from games.bingo import new_bingo_card
 from games.forms import CompetitionForm, BingoForm
-from games.models import BingoCard
+from games.models import BingoCard, Competition, BingoCompetition
 
 
 # register = template.Library()
@@ -21,6 +21,13 @@ def new_competition(request):
     if request.method == 'POST':
         competition_form = CompetitionForm(request.POST)
         bingo_form = BingoForm(request.POST)
+
+        if competition_form.is_valid():
+            game_type = competition_form.cleaned_data.get('game_type')
+            if game_type == 'BINGO' and bingo_form.is_valid():
+                competition = create_bingo_competition(request.user, bingo_form)
+                return redirect('competition', id=competition.id)
+
     else:
         competition_form = CompetitionForm()
         bingo_form = BingoForm()
@@ -32,6 +39,24 @@ def new_competition(request):
 
     return render(request, 'new_competition.html', context)
 
+
+def competition_view(request, **kwargs):
+    competition = Competition.objects.get(id=kwargs['id'])
+    return render(request, 'competition.html', {'competition': competition})
+
+
+def create_bingo_competition(user, form):
+    entity_choice = form.cleaned_data.get('entity_choice')
+    wilderness = form.cleaned_data.get('wilderness')
+    slayer = form.cleaned_data.get('slayer')
+    free_space = form.cleaned_data.get('free_space')
+
+    return BingoCompetition.objects.create(user=user,
+                                           title='Bingo Competition',  # todo
+                                           type=entity_choice,
+                                           wilderness=wilderness,
+                                           slayer=slayer,
+                                           free_space=free_space)
 
 # @login_required
 # def new_bingo_card(request, **kwargs):
