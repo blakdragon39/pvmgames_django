@@ -1,21 +1,30 @@
 {% load static %}
 
-<div class="grid">
-    {% for square in card.to_list %}
-        <div class="griditem">
-            {% if square.0 %}
-                <div class="gridcontent big">
-                    <img src="{% static square.0.image %}"/>
-                </div>
-            {% else %}
-                <p class="freespace">Free Space</p>
-            {% endif %}
+<div class="bingocontainer">
+    <div class="grid">
+        {% for square in card.to_list %}
+            <div class="griditem {% if square.3 %} filledsquare {% endif %}" id="{{ forloop.counter0 }}">
+                {% if square.0 %}
+                    <div class="gridcontent big">
+                        <img src="{% static square.0.image %}"/>
+                    </div>
+                {% else %}
+                    <p class="freespace">Free Space</p>
+                {% endif %}
 
-            {% if square.1 %}
-                <div class="gridcontent small">
-                    <img src="{% static square.1.image %}"/>
-                </div>
-            {% endif %}
-        </div>
-    {% endfor %}
+                {% if square.1 %}
+                    <div class="gridcontent small">
+                        <img src="{% static square.1.image %}"/>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="bingoupdate" id="bingo_updater">
+        <span id="square_label"></span><br><br>
+        <span>Proof: </span>
+        <input id="square_proof" width="200px"/><br><br>
+        <button id="square_submit" type="submit">Update</button>
+    </div>
 </div>

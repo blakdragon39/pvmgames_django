@@ -7,5 +7,5 @@ game_urls = [
     url(r'^bingo/(?P<id>\d+)/$', bingo_competition_view, name='bingo-competition'),
     url(r'^bingo/(?P<competition_id>\d+)/new-bingo-card/$', new_bingo_card_view, name='new-bingo-card'),
 
-    url(r'^ajax/bingo/$', ajax_get_bingo_card, name='reload-bingo')
+    url(r'^ajax/bingo/$', ajax_get_bingo_card, name='reload-bingo'),
 ]

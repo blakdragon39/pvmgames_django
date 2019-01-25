@@ -6,16 +6,49 @@
 {% endblock %}
 
 <script>
-    {% block listeners %}
+    {% block on_ready %}
+        $('#bingo_updater').hide();
+        initClicks();
+
         $('#current_card').change(function () {
             $.ajax({
                 url: '{% url 'reload-bingo' %}',
                 data: { 'bingo_card': $(this).val() },
                 success: (function (data) {
-                    $('#bingo_square').html(data)
+                    $('#bingo_square').html(data);
+                    $('#bingo_updater').hide();
+                    initClicks();
                 })
             });
         });
+
+        function initClicks() {
+            {% for square in card.to_list %}
+                {% with id=forloop.counter0 %}
+                    $('#{{ id }}').click(function () {
+                        localStorage.setItem('current_square', {{ id }});
+                        $('#bingo_updater').show();
+                        $('#square_label').text('{{ square.0 }}{% if square.1 %} - {{ square.1 }}{% endif %}');
+                        $('#square_proof').val('{% if square.2 %}{{ square.2 }}{% endif %}');
+                    });
+                {% endwith %}
+            {% endfor %}
+        }
+
+{#        function loadSquare(card, id) {#}
+{#            $.ajax({#}
+{#                url: '{% url 'get-bingo-square' %}',#}
+{#                data: {#}
+{#                    'bingo_card': card.id,#}
+{#                    'square_id': id#}
+{#                },#}
+{#                type: 'json',#}
+{#                success: (function(data) {#}
+{#                    alert(data.toString())#}
+{#                    // todo#}
+{#                })#}
+{#            })#}
+{#        }#}
     {% endblock %}
 </script>
 

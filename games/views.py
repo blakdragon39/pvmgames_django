@@ -82,12 +82,6 @@ def new_bingo_card_view(request, **kwargs):
     return render(request, 'new_card.html', {'form': form})
 
 
-def bingo_card(request, **kwargs):
-    card = BingoCard.objects.get(id=kwargs['id'])
-    context = {'square_list': card.to_list()}
-    return render(request, 'bingo_card.html', context)
-
-
 def ajax_get_bingo_card(request):
     card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
     response = render_to_response('bingo_card.html', {'card': card})
