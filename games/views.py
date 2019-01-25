@@ -1,47 +1,83 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django import template
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 
-from games.bingo import new_bingo_card
-from games.forms import NewCardForm
-from games.models import BingoCard
-
-
-register = template.Library()
-
-
-@register.filter()
-def range(min=5):
-    return range(min)
+from games.bingo import create_new_bingo_card
+from games.forms import CompetitionForm, BingoForm, NewBingoCardForm
+from games.models import BingoCard, Competition, BingoCompetition
 
 
 @login_required
-def new_card(request, **kwargs):
+def new_competition(request):
     if request.method == 'POST':
-        form = NewCardForm(request.POST)
-        if form.is_valid():
-            entity_choice = form.cleaned_data.get('entity_choice')
-            items = entity_choice == 'ITEMS' or entity_choice == 'BOTH'
-            bosses = entity_choice == 'BOSSES' or entity_choice == 'BOTH'
-            wilderness = form.cleaned_data.get('wilderness')
-            slayer = form.cleaned_data.get('slayer')
-            slayer_level = form.cleaned_data.get('slayer_level')
-            free_space = form.cleaned_data.get('free_space')
+        competition_form = CompetitionForm(request.POST)
+        bingo_form = BingoForm(request.POST)
 
-            card = new_bingo_card(user=request.user,
-                                  items=items,
-                                  bosses=bosses,
-                                  wilderness_bosses=wilderness,
-                                  slayer_bosses=slayer,
-                                  slayer_level=slayer_level,
-                                  free_space=free_space)
+        if competition_form.is_valid():
+            game_type = competition_form.cleaned_data.get('game_type')
+            title = competition_form.cleaned_data.get('title')
+            if game_type == 'BINGO' and bingo_form.is_valid():
+                competition = create_bingo_competition(request.user, title, bingo_form)
+                return redirect('bingo-competition', id=competition.id)
 
-            return redirect('bingo-card', id=card.id)
     else:
-        form = NewCardForm()
+        competition_form = CompetitionForm()
+        bingo_form = BingoForm()
+
+    context = {
+        'competition_form': competition_form,
+        'bingo_form': bingo_form
+    }
+
+    return render(request, 'new_competition.html', context)
+
+
+def bingo_competition_view(request, **kwargs):
+    competition = BingoCompetition.objects.get(id=kwargs['id'])
+    card = competition.game_cards.first()
+
+    context = {
+        'competition': competition,
+        'card': card
+    }
+
+    return render(request, 'bingo_competition.html', context)
+
+
+def create_bingo_competition(user, title, form):
+    entity_choice = form.cleaned_data.get('entity_choice')
+    wilderness = form.cleaned_data.get('wilderness')
+    slayer = form.cleaned_data.get('slayer')
+    free_space = form.cleaned_data.get('free_space')
+
+    return BingoCompetition.objects.create(user=user,
+                                           title=title,
+                                           type=entity_choice,
+                                           wilderness=wilderness,
+                                           slayer=slayer,
+                                           free_space=free_space)
+
+
+@login_required
+def new_bingo_card_view(request, **kwargs):
+
+    if request.method == 'POST':
+        form = NewBingoCardForm(request.POST)
+        competition = Competition.objects.get(id=kwargs['competition_id'])
+
+        if request.user != competition.user:
+            form.add_error(None, 'You are not the owner of this competition')
+        elif form.is_valid():
+            user_name = form.cleaned_data.get('user_name')
+            slayer_level = form.cleaned_data.get('slayer_level')
+
+            create_new_bingo_card(competition, user_name, slayer_level)
+
+            return redirect('bingo-competition', id=competition.id)
+    else:
+        form = NewBingoCardForm()
 
     return render(request, 'new_card.html', {'form': form})
 
@@ -50,3 +86,9 @@ def bingo_card(request, **kwargs):
     card = BingoCard.objects.get(id=kwargs['id'])
     context = {'square_list': card.to_list()}
     return render(request, 'bingo_card.html', context)
+
+
+def ajax_get_bingo_card(request):
+    card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
+    response = render_to_response('bingo_card.html', {'card': card})
+    return response

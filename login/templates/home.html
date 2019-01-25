@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block content %}
-<a href="{% url 'new-card' %}">Get a new Bingo card</a>
+    <a href="{% url 'new-competition' %}">Create a new competition</a>
+    <br><br>
+    {% if user.is_authenticated %}
+        <h2>Your Competitions</h2>
+    {% else %}
+        <h2>Running Competitions</h2>
+    {% endif %}
+
+    {% for competition in competitions %}
+        {# todo other competition types #}
+        <a href="{% url 'bingo-competition' competition.id %}" class="competitionlist">
+            <img src="{% static 'images/bingo.png' %}"/>
+            {{ competition.title }}
+        </a>
+    {% endfor %}
 {% endblock %}

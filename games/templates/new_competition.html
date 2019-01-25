@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+<script>
+    {% block listeners %}
+        $('#id_game_type').change(function() {
+            var selected = $(this).val();
+
+            if (selected === 'BINGO') {
+                $("#bingoform").show()
+            } else {
+                $("#bingoform").hide()
+            }
+        });
+    {% endblock %}
+</script>
+
+{% block content %}
+    <form method="post">
+        <div class="formfield">
+            {{ competition_form.as_p }}
+        </div>
+        <div id="bingoform">
+            {% include 'forms/bingo_form.html' %}
+        </div>
+        <button type="submit">Start New Competition</button>
+    </form>
+{% endblock %}

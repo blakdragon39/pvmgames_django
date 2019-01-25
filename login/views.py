@@ -2,11 +2,21 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 
+from games.models import Competition
 from login.forms import SignUpForm
 
 
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated():
+        competitions = Competition.objects.filter(user=request.user)
+    else:
+        competitions = Competition.objects.all()
+
+    context = {
+        'competitions': competitions
+    }
+
+    return render(request, 'home.html', context)
 
 
 def signup(request):

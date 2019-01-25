@@ -1,7 +1,17 @@
 from django import forms
 
 
-class NewCardForm(forms.Form):
+class CompetitionForm(forms.Form):
+    game_choices = [
+        ('BINGO', 'Bingo'),
+        ('LEADERBOARD', 'Leaderboard')
+    ]
+
+    game_type = forms.ChoiceField(choices=game_choices)
+    title = forms.CharField(max_length=200, required=True)
+
+
+class BingoForm(forms.Form):
     entity_choices = [
         ('BOTH', 'Items and Bosses'),
         ('ITEMS', 'Items Only'),
@@ -11,5 +21,9 @@ class NewCardForm(forms.Form):
     entity_choice = forms.ChoiceField(widget=forms.RadioSelect, choices=entity_choices, initial='BOTH')
     wilderness = forms.BooleanField(initial=True, required=False)
     slayer = forms.BooleanField(initial=True, required=False)
-    slayer_level = forms.IntegerField(min_value=0, max_value=99, initial=99)
     free_space = forms.BooleanField(initial=True, required=False)
+
+
+class NewBingoCardForm(forms.Form):
+    user_name = forms.CharField()
+    slayer_level = forms.IntegerField(min_value=1, max_value=99, initial=99)

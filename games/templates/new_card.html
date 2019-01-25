@@ -3,27 +3,7 @@
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="formfield">
-            <label for="{{ form.entity_choice.id_for_label }}">Squares contain:</label> {{ form.entity_choice }}
-            {{ form.entity_choice.errors }}
-        </div>
-        <div class="formfield">
-            <label for="{{ form.wilderness.id_for_label }}">Wilderness Bosses: </label> {{ form.wilderness }}
-            {{ form.wilderness.errors }}
-        </div>
-        <div class="formfield"> <!-- TODO show/hide slayer level if checked? -->
-            <label for="{{ form.slayer.id_for_label }}">Slayer Bosses: </label> {{ form.slayer }}
-            {{ form.slayer.errors }}
-        </div>
-        <div class="formfield">
-            <label for="{{ form.slayer_level.id_for_label }}">Max Slayer Level: </label> {{ form.slayer_level }}
-            {{ form.slayer_level.errors }}
-        </div>
-        <div class="formfield">
-            <label for="{{ form.free_space.id_for_label }}">Free Space: </label> {{ form.free_space }}
-            {{ form.free_space.errors }}
-        </div>
-        <button type="submit">Generate New Card</button>
+        {{ form.as_p }}
+        <button type="submit">Create New Bingo Card</button>
     </form>
 {% endblock %}

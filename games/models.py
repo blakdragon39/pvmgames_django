@@ -5,11 +5,25 @@ from django.contrib.auth.models import User
 from django.db import models
 from polymorphic.models import PolymorphicModel
 
-'''
-- competition: can have multiple people and is managed by one person
-- game card: 
-    - different games
-'''
+
+class Competition(PolymorphicModel):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, null=False, blank=False)
+
+    def __unicode__(self):
+        return self.title
+
+
+class BingoCompetition(Competition):
+    BINGO_TYPES = [
+        ('ITEMS', 'Items'),
+        ('BOSSES', 'Bosses'),
+        ('BOTH', 'Items and Bosses')
+    ]
+    type = models.CharField(max_length=100, choices=BINGO_TYPES, null=False, blank=False)
+    wilderness = models.BooleanField(null=False)
+    slayer = models.BooleanField(null=False)
+    free_space = models.BooleanField(null=False)
 
 
 class RunescapeEntity(PolymorphicModel):
@@ -58,8 +72,12 @@ class Drop(models.Model):
             return str(self.boss)
 
 
-class GameCard(models.Model):
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+class GameCard(PolymorphicModel):
+    competition = models.ForeignKey(Competition, null=False, on_delete=models.CASCADE, related_name='game_cards')
+    user_name = models.CharField(max_length=50, null=False, blank=False)
+
+    def __unicode__(self):
+        return str(self.competition) + ' - ' + self.user_name
 
 
 class BingoCard(GameCard):
