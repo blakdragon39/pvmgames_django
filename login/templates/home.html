@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-<link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block content %}
@@ -15,9 +15,10 @@
     {% endif %}
 
     {% for competition in competitions %}
-        <p class="competitionlist">
+        {# todo other competition types #}
+        <a href="{% url 'bingo-competition' competition.id %}" class="competitionlist">
             <img src="{% static 'images/bingo.png' %}"/>
             {{ competition.title }}
-        </p>
+        </a>
     {% endfor %}
 {% endblock %}

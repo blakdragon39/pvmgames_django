@@ -2,9 +2,9 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 
-from games.bingo import new_bingo_card
+from games.bingo import create_new_bingo_card
 from games.forms import CompetitionForm, BingoForm, NewBingoCardForm
 from games.models import BingoCard, Competition, BingoCompetition
 
@@ -20,7 +20,7 @@ def new_competition(request):
             title = competition_form.cleaned_data.get('title')
             if game_type == 'BINGO' and bingo_form.is_valid():
                 competition = create_bingo_competition(request.user, title, bingo_form)
-                return redirect('competition', id=competition.id)
+                return redirect('bingo-competition', id=competition.id)
 
     else:
         competition_form = CompetitionForm()
@@ -34,9 +34,16 @@ def new_competition(request):
     return render(request, 'new_competition.html', context)
 
 
-def competition_view(request, **kwargs):
-    competition = Competition.objects.get(id=kwargs['id'])
-    return render(request, 'competition.html', {'competition': competition})
+def bingo_competition_view(request, **kwargs):
+    competition = BingoCompetition.objects.get(id=kwargs['id'])
+    card = competition.game_cards.first()
+
+    context = {
+        'competition': competition,
+        'card': card
+    }
+
+    return render(request, 'bingo_competition.html', context)
 
 
 def create_bingo_competition(user, title, form):
@@ -66,9 +73,9 @@ def new_bingo_card_view(request, **kwargs):
             user_name = form.cleaned_data.get('user_name')
             slayer_level = form.cleaned_data.get('slayer_level')
 
-            card = new_bingo_card(competition, user_name, slayer_level)
+            create_new_bingo_card(competition, user_name, slayer_level)
 
-            return redirect('bingo-card', id=card.id)
+            return redirect('bingo-competition', id=competition.id)
     else:
         form = NewBingoCardForm()
 
@@ -79,3 +86,9 @@ def bingo_card(request, **kwargs):
     card = BingoCard.objects.get(id=kwargs['id'])
     context = {'square_list': card.to_list()}
     return render(request, 'bingo_card.html', context)
+
+
+def ajax_get_bingo_card(request):
+    card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
+    response = render_to_response('bingo_card.html', {'card': card})
+    return response

@@ -10,6 +10,9 @@ class Competition(PolymorphicModel):
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, null=False, blank=False)
 
+    def __unicode__(self):
+        return self.title
+
 
 class BingoCompetition(Competition):
     BINGO_TYPES = [
@@ -69,9 +72,12 @@ class Drop(models.Model):
             return str(self.boss)
 
 
-class GameCard(models.Model):
+class GameCard(PolymorphicModel):
     competition = models.ForeignKey(Competition, null=False, on_delete=models.CASCADE, related_name='game_cards')
     user_name = models.CharField(max_length=50, null=False, blank=False)
+
+    def __unicode__(self):
+        return str(self.competition) + ' - ' + self.user_name
 
 
 class BingoCard(GameCard):

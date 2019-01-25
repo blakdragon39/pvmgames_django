@@ -3,7 +3,7 @@ import random
 from games.models import Drop, BingoCard
 
 
-def new_bingo_card(competition, user_name, slayer_level):
+def create_new_bingo_card(competition, user_name, slayer_level):
     drops = Drop.objects.all()
 
     if not competition.wilderness:

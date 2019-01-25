@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/bingo.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+<script>
+    {% block listeners %}
+        $('#current_card').change(function () {
+            $.ajax({
+                url: '{% url 'reload-bingo' %}',
+                data: { 'bingo_card': $(this).val() },
+                success: (function (data) {
+                    $('#bingo_square').html(data)
+                })
+            });
+        });
+    {% endblock %}
+</script>
+
+{% block content %}
+    <div class="competition">
+        <h2>{{ competition.title }}</h2>
+        {% if user == competition.user %}
+            <a href="{% url 'new-bingo-card' competition.id %}">Add a New Game Card</a>
+            <br><br>
+        {% endif %}
+
+        {% if card %}
+            <select id="current_card">
+                {% for card in competition.game_cards.all %}
+                    <option value="{{ card.id }}">{{ card.user_name }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <div id="bingo_square">
+                {% include 'bingo_card.html' %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
