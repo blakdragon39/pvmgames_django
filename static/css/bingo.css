@@ -1,3 +1,11 @@
+.bingocontainer {
+    display: inline-flex;
+}
+
+.bingoupdate {
+    margin-left: 16px;
+}
+
 .grid {
     display: grid;
     grid-template-rows: repeat(5, 100px);
@@ -8,6 +16,10 @@
     border: 1px solid #EEEDEE;
     position: relative;
     display: flex;
+}
+
+.filledsquare {
+    background: darkred;
 }
 
 .griditem .freespace {

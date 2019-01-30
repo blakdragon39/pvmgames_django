@@ -6,16 +6,59 @@
 {% endblock %}
 
 <script>
-    {% block listeners %}
-        $('#current_card').change(function () {
-            $.ajax({
-                url: '{% url 'reload-bingo' %}',
-                data: { 'bingo_card': $(this).val() },
-                success: (function (data) {
-                    $('#bingo_square').html(data)
-                })
-            });
+    {% block on_ready %}
+        const currentCard = $('#current_card');
+        const bingoUpdater = $('#bingo_updater');
+        const squareLabel = $('#square_label');
+        const squareProof = $('#square_proof');
+        const squareSubmit = $('#square_submit');
+
+        bingoUpdater.hide();
+        currentCard.val({{ card.id }});
+        localStorage.setItem('current_square_id', -1);
+
+        currentCard.change(function () {
+            location.replace('{% url 'bingo-competition' competition.id %}?card_id=' + $(this).val())
         });
+
+        {% for square in card.to_list %}
+            {% with id=forloop.counter0 %}
+                $('#{{ id }}').click(function () {
+                    bingoUpdater.show();
+                    squareLabel.text('{{ square.0 }}{% if square.1 %} - {{ square.1 }}{% endif %}');
+                    squareProof.val('{% if square.2 %}{{ square.2 }}{% else %}{% endif %}');
+                    localStorage.setItem('current_square_id', {{ id }})
+                });
+            {% endwith %}
+        {% endfor %}
+
+        squareProof.on('keypress', function(event) {
+            if (event.keyCode === 13) {
+                updateSquare()
+            }
+        });
+
+        squareSubmit.click(updateSquare);
+
+        function updateSquare() {
+            var proof = squareProof.val().trim();
+
+            $.ajax({
+                url: '{% url 'update-bingo-card' %}',
+                data: {
+                    'card_id': {{ card.id }},
+                    'square_id': localStorage.getItem('current_square_id'),
+                    'proof': proof
+                },
+                success: (function () {
+                    if (proof) {
+                        $('#' + localStorage.getItem('current_square_id')).addClass('filledsquare');
+                    } else {
+                        $('#' + localStorage.getItem('current_square_id')).removeClass('filledsquare');
+                    }
+                })
+            })
+        }
     {% endblock %}
 </script>
 

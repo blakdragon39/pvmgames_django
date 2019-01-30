@@ -2,7 +2,9 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, render_to_response
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from rest_framework import status
 
 from games.bingo import create_new_bingo_card
 from games.forms import CompetitionForm, BingoForm, NewBingoCardForm
@@ -36,7 +38,12 @@ def new_competition(request):
 
 def bingo_competition_view(request, **kwargs):
     competition = BingoCompetition.objects.get(id=kwargs['id'])
-    card = competition.game_cards.first()
+    card_id = request.GET.get('card_id')  # todo DoesNotExist case (404)
+
+    if card_id:
+        card = competition.game_cards.get(id=card_id)
+    else:
+        card = competition.game_cards.first()
 
     context = {
         'competition': competition,
@@ -82,13 +89,17 @@ def new_bingo_card_view(request, **kwargs):
     return render(request, 'new_card.html', {'form': form})
 
 
-def bingo_card(request, **kwargs):
-    card = BingoCard.objects.get(id=kwargs['id'])
-    context = {'square_list': card.to_list()}
-    return render(request, 'bingo_card.html', context)
+def ajax_update_bingo_card(request):
+    card_id = request.GET.get('card_id')
+    square_id = int(request.GET.get('square_id')) + 1
+    proof = request.GET.get('proof')
 
+    card = BingoCard.objects.get(id=card_id)
 
-def ajax_get_bingo_card(request):
-    card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
-    response = render_to_response('bingo_card.html', {'card': card})
-    return response
+    if request.user != card.competition.user:
+        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        card.__setattr__('square' + str(square_id) + '_proof', proof)
+        card.save()
+
+        return HttpResponse()
