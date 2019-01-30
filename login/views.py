@@ -7,14 +7,16 @@ from login.forms import SignUpForm
 
 
 def home(request):
-    if request.user.is_authenticated():
-        competitions = Competition.objects.filter(user=request.user)
-    else:
-        competitions = Competition.objects.all()
+    context = {}
 
-    context = {
-        'competitions': competitions
-    }
+    all_competitions = Competition.objects.all()
+
+    if request.user.is_authenticated():
+        your_competitions = Competition.objects.filter(user=request.user)
+        context['your_competitions'] = your_competitions
+        context['all_competitions'] = all_competitions.exclude(id__in=your_competitions) if your_competitions else all_competitions
+    else:
+        context['all_competitions'] = all_competitions
 
     return render(request, 'home.html', context)
 
