@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, render_to_response
 
 from games.bingo import create_new_bingo_card
@@ -36,7 +37,12 @@ def new_competition(request):
 
 def bingo_competition_view(request, **kwargs):
     competition = BingoCompetition.objects.get(id=kwargs['id'])
-    card = competition.game_cards.first()
+    card_id = request.GET.get('card_id')  # todo DoesNotExist case (404)
+
+    if card_id:
+        card = competition.game_cards.get(id=card_id)
+    else:
+        card = competition.game_cards.first()
 
     context = {
         'competition': competition,
@@ -86,3 +92,26 @@ def ajax_get_bingo_card(request):
     card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
     response = render_to_response('bingo_card.html', {'card': card})
     return response
+
+
+def ajax_get_bingo_square(request):
+    card_id = request.GET.get('card_id')
+    square_id = int(request.GET.get('square_id'))
+
+    card = BingoCard.objects.get(id=card_id)
+    square = card.to_list()[square_id]
+
+    json = {
+        'main': square[0].name,
+        'sub': square[1].name if square[1] else None,
+        'proof': square[2]
+    }
+
+    return JsonResponse(json)
+
+
+def ajax_update_bingo_card(request):
+    card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
+    print request.GET.get('bingo_card')
+    print request.GET.get('square_id')
+    print request.GET.get('proof')
