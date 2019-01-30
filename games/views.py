@@ -88,30 +88,13 @@ def new_bingo_card_view(request, **kwargs):
     return render(request, 'new_card.html', {'form': form})
 
 
-def ajax_get_bingo_card(request):
-    card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
-    response = render_to_response('bingo_card.html', {'card': card})
-    return response
-
-
-def ajax_get_bingo_square(request):
+def ajax_update_bingo_card(request):
     card_id = request.GET.get('card_id')
-    square_id = int(request.GET.get('square_id'))
+    square_id = int(request.GET.get('square_id')) + 1
+    proof = request.GET.get('proof')
 
     card = BingoCard.objects.get(id=card_id)
-    square = card.to_list()[square_id]
+    card.__setattr__('square' + str(square_id) + '_proof', proof)
+    card.save()
 
-    json = {
-        'main': square[0].name,
-        'sub': square[1].name if square[1] else None,
-        'proof': square[2]
-    }
-
-    return JsonResponse(json)
-
-
-def ajax_update_bingo_card(request):
-    card = BingoCard.objects.get(id=request.GET.get('bingo_card'))
-    print request.GET.get('bingo_card')
-    print request.GET.get('square_id')
-    print request.GET.get('proof')
+    return HttpResponse()

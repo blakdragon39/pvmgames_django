@@ -9,13 +9,43 @@
     {% block on_ready %}
         const currentCard = $('#current_card');
         const bingoUpdater = $('#bingo_updater');
+        const squareLabel = $('#square_label');
+        const squareProof = $('#square_proof');
+        const squareSubmit = $('#square_submit');
 
         bingoUpdater.hide();
-
         currentCard.val({{ card.id }});
+        localStorage.setItem('current_square_id', -1);
 
-        currentCard.change(function() {
+        currentCard.change(function () {
             location.replace('{% url 'bingo-competition' competition.id %}?card_id=' + $(this).val())
+        });
+
+        {% for square in card.to_list %}
+            {% with id=forloop.counter0 %}
+                $('#{{ id }}').click(function () {
+                    bingoUpdater.show();
+                    squareLabel.text('{{ square.0 }}{% if square.1 %} - {{ square.1 }}{% endif %}');
+                    {% if square.2 %} squareProof.val('{{ square.2 }}'); {% endif %}
+                    localStorage.setItem('current_square_id', {{ id }})
+                });
+            {% endwith %}
+        {% endfor %}
+
+        squareSubmit.click(function () {
+            if (squareProof.val().trim()) {
+                $.ajax({
+                    url: '{% url 'update-bingo-card' %}',
+                    data: {
+                        'card_id': {{ card.id }},
+                        'square_id': localStorage.getItem('current_square_id'),
+                        'proof': squareProof.val()
+                    },
+                    success: (function (data) {
+                        console.log('successfully updated');
+                    })
+                })
+            }
         });
     {% endblock %}
 </script>
