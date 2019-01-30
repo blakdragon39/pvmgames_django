@@ -32,21 +32,33 @@
             {% endwith %}
         {% endfor %}
 
-        squareSubmit.click(function () {
-            if (squareProof.val().trim()) {
-                $.ajax({
-                    url: '{% url 'update-bingo-card' %}',
-                    data: {
-                        'card_id': {{ card.id }},
-                        'square_id': localStorage.getItem('current_square_id'),
-                        'proof': squareProof.val()
-                    },
-                    success: (function (data) {
-                        console.log('successfully updated');
-                    })
-                })
+        squareProof.on('keypress', function(event) {
+            if (event.keyCode === 13) {
+                updateSquare()
             }
         });
+
+        squareSubmit.click(updateSquare);
+
+        function updateSquare() {
+            var proof = squareProof.val().trim();
+
+            $.ajax({
+                url: '{% url 'update-bingo-card' %}',
+                data: {
+                    'card_id': {{ card.id }},
+                    'square_id': localStorage.getItem('current_square_id'),
+                    'proof': proof
+                },
+                success: (function () {
+                    if (proof) {
+                        $('#' + localStorage.getItem('current_square_id')).addClass('filledsquare');
+                    } else {
+                        $('#' + localStorage.getItem('current_square_id')).removeClass('filledsquare')
+                    }
+                })
+            })
+        }
     {% endblock %}
 </script>
 

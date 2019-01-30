@@ -3,13 +3,13 @@
 <div class="bingocontainer">
     <div class="grid">
         {% for square in card.to_list %}
-            <div class="griditem {% if square.3 %} filledsquare {% endif %}" id="{{ forloop.counter0 }}">
+            <div class="griditem {% if square.2 %} filledsquare {% endif %}" id="{{ forloop.counter0 }}">
                 {% if square.0 %}
                     <div class="gridcontent big">
                         <img src="{% static square.0.image %}"/>
                     </div>
                 {% else %}
-                    <p class="freespace">Free Space</p>
+                    <p class="freespace filledsquare">Free Space</p>
                 {% endif %}
 
                 {% if square.1 %}
