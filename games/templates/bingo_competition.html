@@ -26,7 +26,7 @@
                 $('#{{ id }}').click(function () {
                     bingoUpdater.show();
                     squareLabel.text('{{ square.0 }}{% if square.1 %} - {{ square.1 }}{% endif %}');
-                    {% if square.2 %} squareProof.val('{{ square.2 }}'); {% endif %}
+                    squareProof.val('{% if square.2 %}{{ square.2 }}{% else %}{% endif %}');
                     localStorage.setItem('current_square_id', {{ id }})
                 });
             {% endwith %}
@@ -54,7 +54,7 @@
                     if (proof) {
                         $('#' + localStorage.getItem('current_square_id')).addClass('filledsquare');
                     } else {
-                        $('#' + localStorage.getItem('current_square_id')).removeClass('filledsquare')
+                        $('#' + localStorage.getItem('current_square_id')).removeClass('filledsquare');
                     }
                 })
             })
