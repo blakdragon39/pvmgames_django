@@ -21,10 +21,12 @@
         {% endfor %}
     </div>
 
-    <div class="bingoupdate" id="bingo_updater">
-        <span id="square_label"></span><br><br>
-        <span>Proof: </span>
-        <input id="square_proof" width="200px"/><br><br>
-        <button id="square_submit" type="submit">Update</button>
-    </div>
+    {% ifequal user card.user %}
+        <div class="bingoupdate" id="bingo_updater">
+            <span id="square_label"></span><br><br>
+            <span>Proof: </span>
+            <input id="square_proof" width="200px"/><br><br>
+            <button id="square_submit" type="submit">Update</button>
+        </div>
+    {% endifequal %}
 </div>

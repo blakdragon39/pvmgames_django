@@ -2,8 +2,9 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect, render_to_response
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from rest_framework import status
 
 from games.bingo import create_new_bingo_card
 from games.forms import CompetitionForm, BingoForm, NewBingoCardForm
@@ -94,7 +95,11 @@ def ajax_update_bingo_card(request):
     proof = request.GET.get('proof')
 
     card = BingoCard.objects.get(id=card_id)
-    card.__setattr__('square' + str(square_id) + '_proof', proof)
-    card.save()
 
-    return HttpResponse()
+    if request.user != card.competition.user:
+        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        card.__setattr__('square' + str(square_id) + '_proof', proof)
+        card.save()
+
+        return HttpResponse()
