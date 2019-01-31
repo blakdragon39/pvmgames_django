@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <script type="text/javascript" src="{% static 'javascript/leader_board.js' %}"></script>
+{% endblock %}
 
 <script>
     {% block on_ready %}
-        $('#id_game_type').change(function() {
+        const gameType = $('#id_game_type');
+        const bingoForm = $('#bingoform');
+        const leaderBoardForm = $('#leaderboardform');
+
+        gameType.change(function() {
             var selected = $(this).val();
 
             if (selected === 'BINGO') {
-                $("#bingoform").show()
-            } else {
-                $("#bingoform").hide()
+                bingoForm.show();
+                leaderBoardForm.hide();
+            } else if (selected === 'LEADERBOARD') {
+                bingoForm.hide();
+                leaderBoardForm.show();
             }
         });
+
+        gameType.change();
     {% endblock %}
 </script>
 
@@ -19,9 +32,10 @@
         <div class="formfield">
             {{ competition_form.as_p }}
         </div>
-        <div id="bingoform">
-            {% include 'forms/bingo_form.html' %}
-        </div>
+
+        <div id="bingoform">{% include 'forms/bingo_form.html' %}</div>
+        <div id="leaderboardform">{% include 'forms/leader_board_form.html' %}</div>
+
         <button type="submit">Start New Competition</button>
     </form>
 {% endblock %}

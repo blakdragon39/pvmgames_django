@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from rest_framework import status
 
 from games.bingo import create_new_bingo_card
-from games.forms import CompetitionForm, BingoForm, NewBingoCardForm
+from games.forms import CompetitionForm, BingoForm, NewBingoCardForm, LeaderBoardForm
 from games.models import BingoCard, Competition, BingoCompetition
 
 
@@ -16,6 +16,7 @@ def new_competition(request):
     if request.method == 'POST':
         competition_form = CompetitionForm(request.POST)
         bingo_form = BingoForm(request.POST)
+        leader_board_form = LeaderBoardForm(request.POST)
 
         if competition_form.is_valid():
             game_type = competition_form.cleaned_data.get('game_type')
@@ -27,10 +28,12 @@ def new_competition(request):
     else:
         competition_form = CompetitionForm()
         bingo_form = BingoForm()
+        leader_board_form = LeaderBoardForm()
 
     context = {
         'competition_form': competition_form,
-        'bingo_form': bingo_form
+        'bingo_form': bingo_form,
+        'leader_board_form': leader_board_form
     }
 
     return render(request, 'new_competition.html', context)

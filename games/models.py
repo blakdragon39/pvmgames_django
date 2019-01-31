@@ -26,6 +26,10 @@ class BingoCompetition(Competition):
     free_space = models.BooleanField(null=False)
 
 
+class LeaderBoardCompetition(Competition):
+    pass
+
+
 class RunescapeEntity(PolymorphicModel):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
     _image = models.CharField(max_length=100, null=False, blank=False)
@@ -78,6 +82,10 @@ class GameCard(PolymorphicModel):
 
     def __unicode__(self):
         return str(self.competition) + ' - ' + self.user_name
+
+
+class LeaderBoardCard(GameCard):
+    pass
 
 
 class BingoCard(GameCard):
