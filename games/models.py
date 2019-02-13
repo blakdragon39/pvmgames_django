@@ -27,7 +27,31 @@ class BingoCompetition(Competition):
 
 
 class LeaderBoardCompetition(Competition):
-    pass
+    abyssal_sire = models.BooleanField()
+    cerberus = models.BooleanField()
+    grotesque_guardians = models.BooleanField()
+    kraken = models.BooleanField()
+    thermonuclear_smoke_devil = models.BooleanField()
+
+    callisto = models.BooleanField()
+    chaos_elemental = models.BooleanField()
+    scorpia = models.BooleanField()
+    venenatis = models.BooleanField()
+    vetion = models.BooleanField()
+
+    zilyana = models.BooleanField()
+    graardor = models.BooleanField()
+    kree_arra = models.BooleanField()
+    kril_tsutsaroth = models.BooleanField()
+
+    prime = models.BooleanField()
+    rex = models.BooleanField()
+    supreme = models.BooleanField()
+
+    kalphite_queen = models.BooleanField()
+    king_black_dragon = models.BooleanField()
+    vorkath = models.BooleanField()
+    zulrah = models.BooleanField()
 
 
 class RunescapeEntity(PolymorphicModel):

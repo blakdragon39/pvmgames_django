@@ -8,7 +8,7 @@ from rest_framework import status
 
 from games.bingo import create_new_bingo_card
 from games.forms import CompetitionForm, BingoForm, NewBingoCardForm, LeaderBoardForm
-from games.models import BingoCard, Competition, BingoCompetition
+from games.models import BingoCard, Competition, BingoCompetition, LeaderBoardCompetition
 
 
 @login_required
@@ -23,11 +23,16 @@ def new_competition(request):
         if competition_form.is_valid():
             game_type = competition_form.cleaned_data.get('game_type')
             title = competition_form.cleaned_data.get('title')
+
             if game_type == 'BINGO' and bingo_form.is_valid():
                 competition = create_bingo_competition(request.user, title, bingo_form)
                 return redirect('bingo-competition', id=competition.id)
             elif game_type == 'LEADERBOARD' and leader_board_form.is_valid():
-                print 'valid leaderboard'  # todo
+                competition = leader_board_form.save(commit=False)
+                competition.title = title
+                competition.user = request.user
+                competition.save()
+                return redirect('leader-board-competition', id=competition.id)
 
     else:
         competition_form = CompetitionForm()
@@ -47,8 +52,7 @@ def check_leader_board_errors(request, form):
     error = True
 
     for field in form.fields:
-        print request.POST.get(field)
-        if form[field]:
+        if request.POST.get(field):
             error = False
 
     if error:
@@ -84,6 +88,15 @@ def create_bingo_competition(user, title, form):
                                            wilderness=wilderness,
                                            slayer=slayer,
                                            free_space=free_space)
+
+
+def leader_board_competition_view(request, **kwargs):
+    competition = LeaderBoardCompetition.objects.get(id=kwargs['id'])
+    context = {
+        'competition': competition
+    }
+
+    return render(request, 'leader_board_competition.html', context)
 
 
 @login_required
