@@ -1,5 +1,6 @@
 from django import forms
 
+
 class CompetitionForm(forms.Form):
     game_choices = [
         ('LEADERBOARD', 'Leaderboard'),
@@ -29,28 +30,28 @@ class NewBingoCardForm(forms.Form):
 
 
 class LeaderBoardForm(forms.Form):
-    abyssal_sire = forms.BooleanField()
-    cerberus = forms.BooleanField()
-    grotesque_guardians = forms.BooleanField()
-    kraken = forms.BooleanField()
-    thermonuclear_smoke_devil = forms.BooleanField()
+    abyssal_sire = forms.BooleanField(required=False)
+    cerberus = forms.BooleanField(required=False)
+    grotesque_guardians = forms.BooleanField(required=False)
+    kraken = forms.BooleanField(required=False)
+    thermonuclear_smoke_devil = forms.BooleanField(required=False)
 
-    callisto = forms.BooleanField()
-    chaos_elemental = forms.BooleanField()
-    scorpia = forms.BooleanField()
-    venenatis = forms.BooleanField()
-    vetion = forms.BooleanField()
+    callisto = forms.BooleanField(required=False)
+    chaos_elemental = forms.BooleanField(required=False)
+    scorpia = forms.BooleanField(required=False)
+    venenatis = forms.BooleanField(required=False)
+    vetion = forms.BooleanField(required=False)
 
-    zilyana = forms.BooleanField()
-    graardor = forms.BooleanField()
-    kree_arra = forms.BooleanField()
-    kril_tsutsaroth = forms.BooleanField()
+    zilyana = forms.BooleanField(required=False)
+    graardor = forms.BooleanField(required=False)
+    kree_arra = forms.BooleanField(required=False)
+    kril_tsutsaroth = forms.BooleanField(required=False)
 
-    prime = forms.BooleanField()
-    rex = forms.BooleanField()
-    supreme = forms.BooleanField()
+    prime = forms.BooleanField(required=False)
+    rex = forms.BooleanField(required=False)
+    supreme = forms.BooleanField(required=False)
 
-    kalphite_queen = forms.BooleanField()
-    king_black_dragon = forms.BooleanField()
-    vorkath = forms.BooleanField()
-    zulrah = forms.BooleanField()
+    kalphite_queen = forms.BooleanField(required=False)
+    king_black_dragon = forms.BooleanField(required=False)
+    vorkath = forms.BooleanField(required=False)
+    zulrah = forms.BooleanField(required=False)

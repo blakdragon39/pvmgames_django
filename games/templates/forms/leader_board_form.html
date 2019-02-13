@@ -1,4 +1,3 @@
-{% csrf_token %}
 {{ leader_board_form.non_field_errors }}
 <div class="formcolumns">
     <div class="formcolumn">
@@ -8,7 +7,7 @@
         <div>{{ leader_board_form.zulrah }}<label for="id_zulrah">Zulrah</label></div>
     </div>
     <div class="formcolumn">
-        <div><input type="checkbox" id="god_wars_dungeon_bosses"><label for="god_wars_dungeon_bosses">God Wars Dungeon Bosses</label></div>
+        <div><input type="checkbox" name="god_wars_dungeon_bosses" id="god_wars_dungeon_bosses"><label for="god_wars_dungeon_bosses">God Wars Dungeon Bosses</label></div>
         <br>
         <div>{{ leader_board_form.zilyana }}<label for="id_zilyana">Zilyana</label></div>
         <div>{{ leader_board_form.graardor }}<label for="id_graardor">Graardor</label></div>
@@ -16,14 +15,14 @@
         <div>{{ leader_board_form.kril_tsutsaroth }}<label for="id_kril_tsutsaroth">K'ril Tsutsaroth</label></div>
     </div>
     <div class="formcolumn">
-        <div><input type="checkbox" id="dagannoth_kings"><label for="dagannoth_kings">Dagannoth Kings</label></div>
+        <div><input type="checkbox" name="dagannoth_kings" id="dagannoth_kings"><label for="dagannoth_kings">Dagannoth Kings</label></div>
         <br>
         <div>{{ leader_board_form.prime }}<label for="id_prime">Dagannoth Prime</label></div>
         <div>{{ leader_board_form.rex }}<label for="id_rex">Dagannoth Rex</label></div>
         <div>{{ leader_board_form.supreme }}<label for="id_supreme">Dagannoth Supreme</label></div>
     </div>
     <div class="formcolumn">
-        <div><input type="checkbox" id="wilderness_bosses"><label for="wilderness_bosses">Wilderness Bosses</label></div>
+        <div><input type="checkbox" name="wilderness_bosses" id="wilderness_bosses"><label for="wilderness_bosses">Wilderness Bosses</label></div>
         <br>
         <div>{{ leader_board_form.callisto }}<label for="id_callisto">Callisto</label></div>
         <div>{{ leader_board_form.chaos_elemental }}<label for="id_chaos_elemental">Chaos Elemental</label></div>
@@ -32,7 +31,7 @@
         <div>{{ leader_board_form.vetion }}<label for="id_vetion">Vet'ion</label></div>
     </div>
     <div class="formcolumn">
-        <div><input type="checkbox" id="slayer_bosses"><label for="slayer_bosses">Slayer Bosses</label></div>
+        <div><input type="checkbox" name="slayer_bosses" id="slayer_bosses"><label for="slayer_bosses">Slayer Bosses</label></div>
         <br>
         <div>{{ leader_board_form.abyssal_sire }}<label for="id_abyssal_sire">Abyssal Sire</label></div>
         <div>{{ leader_board_form.cerberus }}<label for="id_cerberus">Cerberus</label></div>

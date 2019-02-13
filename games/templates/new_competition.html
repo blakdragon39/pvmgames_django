@@ -29,9 +29,8 @@
 
 {% block content %}
     <form method="post">
-        <div class="formfield">
-            {{ competition_form.as_p }}
-        </div>
+        {% csrf_token %}
+        <div class="formfield">{{ competition_form.as_p }}</div>
 
         <div id="bingoform">{% include 'forms/bingo_form.html' %}</div>
         <div id="leaderboardform">{% include 'forms/leader_board_form.html' %}</div>

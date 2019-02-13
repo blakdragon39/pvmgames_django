@@ -1,18 +1,17 @@
-{% csrf_token %}
 {{ bingo_form.non_field_errors }}
 <div class="formfield">
     <label>Squares contain:</label> {{ bingo_form.entity_choice }}
     {{ bingo_form.entity_choice.errors }}
 </div>
 <div class="formfield">
-    <label>Wilderness Bosses: </label> {{ bingo_form.wilderness }}
+    <label for="id_wilderness">Wilderness Bosses: </label> {{ bingo_form.wilderness }}
     {{ bingo_form.wilderness.errors }}
 </div>
 <div class="formfield">
-    <label>Slayer Bosses: </label> {{ bingo_form.slayer }}
+    <label for="id_slayer">Slayer Bosses: </label> {{ bingo_form.slayer }}
     {{ bingo_form.slayer.errors }}
 </div>
 <div class="formfield">
-    <label>Free Space: </label> {{ bingo_form.free_space }}
+    <label for="id_free_space">Free Space: </label> {{ bingo_form.free_space }}
     {{ bingo_form.free_space.errors }}
 </div>

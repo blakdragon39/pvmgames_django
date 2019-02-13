@@ -18,12 +18,16 @@ def new_competition(request):
         bingo_form = BingoForm(request.POST)
         leader_board_form = LeaderBoardForm(request.POST)
 
+        check_leader_board_errors(request, leader_board_form)
+
         if competition_form.is_valid():
             game_type = competition_form.cleaned_data.get('game_type')
             title = competition_form.cleaned_data.get('title')
             if game_type == 'BINGO' and bingo_form.is_valid():
                 competition = create_bingo_competition(request.user, title, bingo_form)
                 return redirect('bingo-competition', id=competition.id)
+            elif game_type == 'LEADERBOARD' and leader_board_form.is_valid():
+                print 'valid leaderboard'  # todo
 
     else:
         competition_form = CompetitionForm()
@@ -37,6 +41,18 @@ def new_competition(request):
     }
 
     return render(request, 'new_competition.html', context)
+
+
+def check_leader_board_errors(request, form):
+    error = True
+
+    for field in form.fields:
+        print request.POST.get(field)
+        if form[field]:
+            error = False
+
+    if error:
+        form.add_error(None, 'You must choose at least one boss to create a competition')
 
 
 def bingo_competition_view(request, **kwargs):
