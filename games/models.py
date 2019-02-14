@@ -6,54 +6,6 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 
 
-class Competition(PolymorphicModel):
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200, null=False, blank=False)
-
-    def __unicode__(self):
-        return self.title
-
-
-class BingoCompetition(Competition):
-    BINGO_TYPES = [
-        ('ITEMS', 'Items'),
-        ('BOSSES', 'Bosses'),
-        ('BOTH', 'Items and Bosses')
-    ]
-    type = models.CharField(max_length=100, choices=BINGO_TYPES, null=False, blank=False)
-    wilderness = models.BooleanField(null=False)
-    slayer = models.BooleanField(null=False)
-    free_space = models.BooleanField(null=False)
-
-
-class LeaderBoardCompetition(Competition):
-    abyssal_sire = models.BooleanField()
-    cerberus = models.BooleanField()
-    grotesque_guardians = models.BooleanField()
-    kraken = models.BooleanField()
-    thermonuclear_smoke_devil = models.BooleanField()
-
-    callisto = models.BooleanField()
-    chaos_elemental = models.BooleanField()
-    scorpia = models.BooleanField()
-    venenatis = models.BooleanField()
-    vetion = models.BooleanField()
-
-    zilyana = models.BooleanField()
-    graardor = models.BooleanField()
-    kree_arra = models.BooleanField()
-    kril_tsutsaroth = models.BooleanField()
-
-    prime = models.BooleanField()
-    rex = models.BooleanField()
-    supreme = models.BooleanField()
-
-    kalphite_queen = models.BooleanField()
-    king_black_dragon = models.BooleanField()
-    vorkath = models.BooleanField()
-    zulrah = models.BooleanField()
-
-
 class RunescapeEntity(PolymorphicModel):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
     _image = models.CharField(max_length=100, null=False, blank=False)
@@ -100,6 +52,17 @@ class Drop(models.Model):
             return str(self.boss)
 
 
+class Competition(PolymorphicModel):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, null=False, blank=False)
+
+    def __unicode__(self):
+        return self.title
+
+    def get_type(self):
+        return None
+
+
 class GameCard(PolymorphicModel):
     competition = models.ForeignKey(Competition, null=False, on_delete=models.CASCADE, related_name='game_cards')
     user_name = models.CharField(max_length=50, null=False, blank=False)
@@ -108,8 +71,55 @@ class GameCard(PolymorphicModel):
         return str(self.competition) + ' - ' + self.user_name
 
 
+class LeaderBoardCompetition(Competition):
+    abyssal_sire = models.BooleanField()
+    cerberus = models.BooleanField()
+    grotesque_guardians = models.BooleanField()
+    kraken = models.BooleanField()
+    thermonuclear_smoke_devil = models.BooleanField()
+
+    callisto = models.BooleanField()
+    chaos_elemental = models.BooleanField()
+    scorpia = models.BooleanField()
+    venenatis = models.BooleanField()
+    vetion = models.BooleanField()
+
+    zilyana = models.BooleanField()
+    graardor = models.BooleanField()
+    kree_arra = models.BooleanField()
+    kril_tsutsaroth = models.BooleanField()
+
+    prime = models.BooleanField()
+    rex = models.BooleanField()
+    supreme = models.BooleanField()
+
+    kalphite_queen = models.BooleanField()
+    king_black_dragon = models.BooleanField()
+    vorkath = models.BooleanField()
+    zulrah = models.BooleanField()
+
+    def get_type(self):
+        return 'leader-board'
+
+
 class LeaderBoardCard(GameCard):
-    pass
+    drop = models.ForeignKey(Drop)
+    proof = models.CharField(max_length=256)
+
+
+class BingoCompetition(Competition):
+    BINGO_TYPES = [
+        ('ITEMS', 'Items'),
+        ('BOSSES', 'Bosses'),
+        ('BOTH', 'Items and Bosses')
+    ]
+    type = models.CharField(max_length=100, choices=BINGO_TYPES, null=False, blank=False)
+    wilderness = models.BooleanField(null=False)
+    slayer = models.BooleanField(null=False)
+    free_space = models.BooleanField(null=False)
+
+    def get_type(self):
+        return 'bingo'
 
 
 class BingoCard(GameCard):

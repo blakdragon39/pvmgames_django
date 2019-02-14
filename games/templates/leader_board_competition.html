@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    Blank leaderboard page
+    <div class="competition">
+        {% if competition.user == user %}
+            <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br></div>
+            <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
+            <div class="formfield"><button id="add_entry">Add Entry</button></div>
+            <br>
+        {% endif %}
+        <h2>{{ competition.title }}</h2>
+        {% if not competition.game_cards.all %}
+            No entries yet
+        {% endif %}
+        {% for card in competition.game_cards.all %}
+            {# todo #}
+        {% endfor %}
+    </div>
 {% endblock %}
