@@ -72,39 +72,29 @@ class GameCard(PolymorphicModel):
 
 
 class LeaderBoardCompetition(Competition):
-    abyssal_sire = models.BooleanField()
-    cerberus = models.BooleanField()
-    grotesque_guardians = models.BooleanField()
-    kraken = models.BooleanField()
-    thermonuclear_smoke_devil = models.BooleanField()
-
-    callisto = models.BooleanField()
-    chaos_elemental = models.BooleanField()
-    scorpia = models.BooleanField()
-    venenatis = models.BooleanField()
-    vetion = models.BooleanField()
-
-    zilyana = models.BooleanField()
-    graardor = models.BooleanField()
-    kree_arra = models.BooleanField()
-    kril_tsutsaroth = models.BooleanField()
-
-    prime = models.BooleanField()
-    rex = models.BooleanField()
-    supreme = models.BooleanField()
-
-    kalphite_queen = models.BooleanField()
-    king_black_dragon = models.BooleanField()
-    vorkath = models.BooleanField()
-    zulrah = models.BooleanField()
 
     def get_type(self):
         return 'leader-board'
 
 
+class LeaderBoardBoss(models.Model):
+    competition = models.ForeignKey(LeaderBoardCompetition, null=False, related_name='bosses')
+    boss = models.ForeignKey(Boss, null=False)
+
+    def __unicode__(self):
+        return str(self.competition) + ' - ' + str(self.boss)
+
+
 class LeaderBoardCard(GameCard):
     drop = models.ForeignKey(Drop)
     proof = models.CharField(max_length=256)
+
+
+class LeaderBoardRanking:
+
+    def __init__(self, username, rank):
+        self.username = username
+        self.rank = rank  # todo
 
 
 class BingoCompetition(Competition):

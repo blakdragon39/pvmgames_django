@@ -1,5 +1,33 @@
 {% extends 'base.html' %}
 
+<script>
+    {% block on_ready %}
+        const entryUsername = $('#entry_username');
+        const entryProof = $('#entry_proof');
+        const addEntry = $('#add_entry');
+
+        addEntry.click(function () {
+            var username = entryUsername.val().trim();
+            var proof = entryProof.val().trim();
+
+            if (username && proof) {
+                $.ajax({
+                    url: '{% url 'update-leader-board' %}',
+                    data: {
+                        'competition_id': {{ competition.id }},
+                        'username': username,
+                        'proof': proof
+                    },
+                    success: (function () {
+                        //todo try reload?
+                        location.replace('{% url 'leader-board-competition' competition.id %}')
+                    })
+                })
+            }
+        });
+    {% endblock %}
+</script>
+
 {% block content %}
     <div class="competition">
         {% if competition.user == user %}
@@ -13,6 +41,7 @@
             No entries yet
         {% endif %}
         {% for card in competition.game_cards.all %}
+            {{ card.user_name }} - {{ card.proof }}
             {# todo #}
         {% endfor %}
     </div>

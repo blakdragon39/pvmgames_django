@@ -8,7 +8,8 @@ from rest_framework import status
 
 from games.bingo import create_new_bingo_card
 from games.forms import CompetitionForm, BingoForm, NewBingoCardForm, LeaderBoardForm
-from games.models import BingoCard, Competition, BingoCompetition, LeaderBoardCompetition
+from games.models import BingoCard, Competition, BingoCompetition, LeaderBoardCompetition, LeaderBoardCard, Drop, \
+    LeaderBoardBoss, Boss
 
 
 @login_required
@@ -28,10 +29,7 @@ def new_competition(request):
                 competition = create_bingo_competition(request.user, title, bingo_form)
                 return redirect('bingo-competition', id=competition.id)
             elif game_type == 'LEADERBOARD' and leader_board_form.is_valid():
-                competition = leader_board_form.save(commit=False)
-                competition.title = title
-                competition.user = request.user
-                competition.save()
+                competition = create_leader_board_competition(request.user, title, leader_board_form)
                 return redirect('leader-board-competition', id=competition.id)
 
     else:
@@ -57,6 +55,75 @@ def check_leader_board_errors(request, form):
 
     if error:
         form.add_error(None, 'You must choose at least one boss to create a competition')
+
+
+def create_leader_board_competition(user, title, form):
+    competition = LeaderBoardCompetition.objects.create(user=user, title=title)
+
+    if form.cleaned_data['abyssal_sire']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Abyssal Sire'))
+
+    if form.cleaned_data['cerberus']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Cerberus'))
+
+    if form.cleaned_data['grotesque_guardians']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Grotesque Guardians'))
+
+    if form.cleaned_data['kraken']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Kraken'))
+
+    if form.cleaned_data['thermonuclear_smoke_devil']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Thermonuclear Smoke Devil'))
+
+    if form.cleaned_data['callisto']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Callisto'))
+
+    if form.cleaned_data['chaos_elemental']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Chaos Elemental'))
+
+    if form.cleaned_data['scorpia']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Scorpia'))
+
+    if form.cleaned_data['venenatis']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Venenatis'))
+
+    if form.cleaned_data['vetion']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Vet\'ion'))
+
+    if form.cleaned_data['zilyana']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Commander Zilyana'))
+
+    if form.cleaned_data['graardor']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='General Graardor'))
+
+    if form.cleaned_data['kree_arra']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Kree\'Arra'))
+
+    if form.cleaned_data['kril_tsutsaroth']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Kril Tsutsaroth'))
+
+    if form.cleaned_data['prime']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Dagannoth Prime'))
+
+    if form.cleaned_data['rex']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Dagannoth Rex'))
+
+    if form.cleaned_data['supreme']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Dagannoth Supreme'))
+
+    if form.cleaned_data['kalphite_queen']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Kalphite Queen'))
+
+    if form.cleaned_data['king_black_dragon']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='King Black Dragon'))
+
+    if form.cleaned_data['vorkath']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Vorkath'))
+
+    if form.cleaned_data['zulrah']:
+        LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Zulrah'))
+
+    return competition
 
 
 def bingo_competition_view(request, **kwargs):
@@ -92,11 +159,30 @@ def create_bingo_competition(user, title, form):
 
 def leader_board_competition_view(request, **kwargs):
     competition = LeaderBoardCompetition.objects.get(id=kwargs['id'])
+
     context = {
         'competition': competition
     }
 
     return render(request, 'leader_board_competition.html', context)
+
+
+def ajax_update_leader_board(request, **kwargs):
+    competition_id = request.GET.get('competition_id')
+    username = request.GET.get('username')
+    proof = request.GET.get('proof')
+
+    competition = LeaderBoardCompetition.objects.get(id=competition_id)
+    drop = Drop.objects.first()  # todo
+
+    if request.user != competition.user:
+        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        LeaderBoardCard.objects.create(competition=competition,
+                                       user_name=username,
+                                       proof=proof,
+                                       drop=drop)
+        return HttpResponse()
 
 
 @login_required
