@@ -2,14 +2,10 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from rest_framework import status
 
-from games.bingo import create_new_bingo_card
-from games.forms import CompetitionForm, BingoForm, NewBingoCardForm, LeaderBoardForm
-from games.models import BingoCard, Competition, BingoCompetition, LeaderBoardCompetition, LeaderBoardCard, Drop, \
-    LeaderBoardBoss, Boss
+from games.forms import CompetitionForm, BingoForm, LeaderBoardForm
+from games.models import BingoCompetition, LeaderBoardCompetition, LeaderBoardBoss, Boss
 
 
 @login_required
@@ -44,6 +40,20 @@ def new_competition(request):
     }
 
     return render(request, 'new_competition.html', context)
+
+
+def create_bingo_competition(user, title, form):
+    entity_choice = form.cleaned_data.get('entity_choice')
+    wilderness = form.cleaned_data.get('wilderness')
+    slayer = form.cleaned_data.get('slayer')
+    free_space = form.cleaned_data.get('free_space')
+
+    return BingoCompetition.objects.create(user=user,
+                                           title=title,
+                                           type=entity_choice,
+                                           wilderness=wilderness,
+                                           slayer=slayer,
+                                           free_space=free_space)
 
 
 def check_leader_board_errors(request, form):
@@ -124,100 +134,3 @@ def create_leader_board_competition(user, title, form):
         LeaderBoardBoss.objects.create(competition=competition, boss=Boss.objects.get(name='Zulrah'))
 
     return competition
-
-
-def bingo_competition_view(request, **kwargs):
-    competition = BingoCompetition.objects.get(id=kwargs['id'])
-    card_id = request.GET.get('card_id')  # todo DoesNotExist case (404)
-
-    if card_id:
-        card = competition.game_cards.get(id=card_id)
-    else:
-        card = competition.game_cards.first()
-
-    context = {
-        'competition': competition,
-        'card': card
-    }
-
-    return render(request, 'bingo_competition.html', context)
-
-
-def create_bingo_competition(user, title, form):
-    entity_choice = form.cleaned_data.get('entity_choice')
-    wilderness = form.cleaned_data.get('wilderness')
-    slayer = form.cleaned_data.get('slayer')
-    free_space = form.cleaned_data.get('free_space')
-
-    return BingoCompetition.objects.create(user=user,
-                                           title=title,
-                                           type=entity_choice,
-                                           wilderness=wilderness,
-                                           slayer=slayer,
-                                           free_space=free_space)
-
-
-def leader_board_competition_view(request, **kwargs):
-    competition = LeaderBoardCompetition.objects.get(id=kwargs['id'])
-
-    context = {
-        'competition': competition
-    }
-
-    return render(request, 'leader_board_competition.html', context)
-
-
-def ajax_update_leader_board(request, **kwargs):
-    competition_id = request.GET.get('competition_id')
-    username = request.GET.get('username')
-    proof = request.GET.get('proof')
-
-    competition = LeaderBoardCompetition.objects.get(id=competition_id)
-    drop = Drop.objects.first()  # todo
-
-    if request.user != competition.user:
-        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
-    else:
-        LeaderBoardCard.objects.create(competition=competition,
-                                       user_name=username,
-                                       proof=proof,
-                                       drop=drop)
-        return HttpResponse()
-
-
-@login_required
-def new_bingo_card_view(request, **kwargs):
-
-    if request.method == 'POST':
-        form = NewBingoCardForm(request.POST)
-        competition = Competition.objects.get(id=kwargs['competition_id'])
-
-        if request.user != competition.user:
-            form.add_error(None, 'You are not the owner of this competition')
-        elif form.is_valid():
-            user_name = form.cleaned_data.get('user_name')
-            slayer_level = form.cleaned_data.get('slayer_level')
-
-            create_new_bingo_card(competition, user_name, slayer_level)
-
-            return redirect('bingo-competition', id=competition.id)
-    else:
-        form = NewBingoCardForm()
-
-    return render(request, 'new_card.html', {'form': form})
-
-
-def ajax_update_bingo_card(request):
-    card_id = request.GET.get('card_id')
-    square_id = int(request.GET.get('square_id')) + 1
-    proof = request.GET.get('proof')
-
-    card = BingoCard.objects.get(id=card_id)
-
-    if request.user != card.competition.user:
-        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
-    else:
-        card.__setattr__('square' + str(square_id) + '_proof', proof)
-        card.save()
-
-        return HttpResponse()
