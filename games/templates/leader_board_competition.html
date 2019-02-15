@@ -4,17 +4,20 @@
     {% block on_ready %}
         const entryUsername = $('#entry_username');
         const entryProof = $('#entry_proof');
+        const entryDrop = $('#entry_drop');
         const addEntry = $('#add_entry');
 
         addEntry.click(function () {
             var username = entryUsername.val().trim();
             var proof = entryProof.val().trim();
+            var drop_id = entryDrop.find('option:selected').attr('id');
 
             if (username && proof) {
                 $.ajax({
                     url: '{% url 'update-leader-board' %}',
                     data: {
                         'competition_id': {{ competition.id }},
+                        'drop_id': drop_id,
                         'username': username,
                         'proof': proof
                     },
@@ -31,6 +34,14 @@
 {% block content %}
     <div class="competition">
         {% if competition.user == user %}
+            <div class="formfield">
+                <label for="entry_drop">Drop</label>
+                <select id="entry_drop">
+                    {% for drop in drops %}
+                        <option id="{{ drop.id }}">{{ drop }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br></div>
             <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
             <div class="formfield"><button id="add_entry">Add Entry</button></div>
@@ -41,8 +52,8 @@
             No entries yet
         {% endif %}
         {% for card in competition.game_cards.all %}
-            {{ card.user_name }} - {{ card.proof }}
-            {# todo #}
+            {{ card.user_name }} - {{ card.proof }} - {{ card.drop }}
+            <br>
         {% endfor %}
     </div>
 {% endblock %}

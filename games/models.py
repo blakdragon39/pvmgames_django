@@ -45,7 +45,7 @@ class Drop(models.Model):
 
     def __unicode__(self):
         if self.item and self.boss:
-            return str(self.item) + ' - ' + str(self.boss)
+            return str(self.boss) + ' - ' + str(self.item)
         elif self.item:
             return str(self.item)
         elif self.boss:
