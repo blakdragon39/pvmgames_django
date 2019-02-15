@@ -86,15 +86,15 @@ class LeaderBoardBoss(models.Model):
 
 
 class LeaderBoardCard(GameCard):
-    drop = models.ForeignKey(Drop)
+    drop = models.ForeignKey(Drop)  # todo pts?
     proof = models.CharField(max_length=256)
 
 
 class LeaderBoardRanking:
 
-    def __init__(self, username, rank):
+    def __init__(self, username, points):
         self.username = username
-        self.rank = rank  # todo
+        self.points = points  # todo
 
 
 class BingoCompetition(Competition):

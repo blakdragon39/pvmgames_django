@@ -10,9 +10,26 @@ def leader_board_competition_view(request, **kwargs):
     bosses = LeaderBoardBoss.objects.filter(competition=competition).values_list('boss')
     drops = Drop.objects.filter(boss__in=bosses)
 
+    ranks_dict = {}
+    rankings = []
+
+    for card in competition.game_cards.all():
+        try:
+            ranks_dict[card.user_name] += 1  # todo pts
+        except KeyError:
+            ranks_dict[card.user_name] = 1  # todo pts
+
+    for rank in ranks_dict:
+        rankings.append((rank, ranks_dict[rank]))
+
+    rankings.sort(key=lambda r: r[1], reverse=True)
+
+    print rankings
+
     context = {
         'competition': competition,
-        'drops': drops
+        'drops': drops,
+        'rankings': rankings
     }
 
     return render(request, 'leader_board_competition.html', context)

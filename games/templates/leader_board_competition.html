@@ -7,6 +7,9 @@
         const entryDrop = $('#entry_drop');
         const addEntry = $('#add_entry');
 
+        const viewDrops = $('#view_drops');
+        const viewRanks = $('#view_ranks');
+
         addEntry.click(function () {
             var username = entryUsername.val().trim();
             var proof = entryProof.val().trim();
@@ -27,6 +30,16 @@
                     })
                 })
             }
+        });
+
+        viewDrops.click(function() {
+            viewRanks.show();
+            viewDrops.hide();
+        });
+
+        viewRanks.click(function() {
+            viewDrops.show();
+            viewRanks.hide();
         });
     {% endblock %}
 </script>
@@ -49,11 +62,21 @@
         {% endif %}
         <h2>{{ competition.title }}</h2>
         {% if not competition.game_cards.all %}
-            No entries yet
+            <div>No entries yet</div>
+        {% else %}
+            <div>
+                <span id="view_drops" class="clickable"><u>View All Drops</u></span>
+                <span id="view_ranks" class="clickable"><u>View Ranks</u></span>
+            </div>
         {% endif %}
-        {% for card in competition.game_cards.all %}
-            {{ card.user_name }} - {{ card.proof }} - {{ card.drop }}
-            <br>
+
+        {% for rank in rankings %}
+            <div>
+                {{ forloop.counter }}. {{ rank.0 }}
+            </div>
         {% endfor %}
+{#        {% for card in competition.game_cards.all %}#}
+{#            <div>{{ card.user_name }} - {{ card.proof }} - {{ card.drop }}</div>#}
+{#        {% endfor %}#}
     </div>
 {% endblock %}

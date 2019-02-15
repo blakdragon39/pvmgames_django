@@ -32,6 +32,10 @@ button {
     text-decoration: none;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
 .login {
     padding: 0 8px 16px 16px;
 }
