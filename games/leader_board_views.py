@@ -2,13 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import status
 
-from games.models import LeaderBoardCompetition, Drop, LeaderBoardCard, LeaderBoardBoss
+from games.models import LeaderBoardCompetition, Drop, LeaderBoardCard, LeaderBoardDrop
 
 
 def leader_board_competition_view(request, **kwargs):
     competition = LeaderBoardCompetition.objects.get(id=kwargs['id'])
-    bosses = LeaderBoardBoss.objects.filter(competition=competition).values_list('boss')
-    drops = Drop.objects.filter(boss__in=bosses)
+    drops = competition.drops.all()
 
     ranks_dict = {}
     rankings = []
@@ -23,8 +22,6 @@ def leader_board_competition_view(request, **kwargs):
         rankings.append((rank, ranks_dict[rank]))
 
     rankings.sort(key=lambda r: r[1], reverse=True)
-
-    print rankings
 
     context = {
         'competition': competition,

@@ -64,7 +64,7 @@
                 <label for="entry_drop">Drop</label>
                 <select id="entry_drop">
                     {% for drop in drops %}
-                        <option id="{{ drop.id }}">{{ drop }}</option>
+                        <option id="{{ drop.id }}">{{ drop.drop.boss }} - {{ drop.drop.item }}</option>
                     {% endfor %}
                 </select>
             </div>

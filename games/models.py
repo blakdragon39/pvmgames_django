@@ -77,21 +77,22 @@ class LeaderBoardCompetition(Competition):
         return 'leader-board'
 
 
-class LeaderBoardBoss(models.Model):
-    competition = models.ForeignKey(LeaderBoardCompetition, null=False, related_name='bosses')
-    boss = models.ForeignKey(Boss, null=False)
+class LeaderBoardDrop(models.Model):
+    competition = models.ForeignKey(LeaderBoardCompetition, null=False, on_delete=models.CASCADE, related_name='drops')
+    drop = models.ForeignKey(Drop, null=False, on_delete=models.CASCADE)
+    points = models.IntegerField(null=False, default=1)
 
     def __unicode__(self):
-        return str(self.competition) + ' - ' + str(self.boss)
+        return str(self.competition) + ' - ' + str(self.drop)
 
 
 class LeaderBoardCard(GameCard):
-    drop = models.ForeignKey(Drop)  # todo pts?
+    drop = models.ForeignKey(Drop, on_delete=models.CASCADE)
     proof = models.CharField(max_length=256)
+    points = models.IntegerField(null=False, default=1)
 
 
 class LeaderBoardRanking:
-
     def __init__(self, username, points):
         self.username = username
         self.points = points  # todo
