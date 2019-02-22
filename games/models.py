@@ -72,6 +72,7 @@ class GameCard(PolymorphicModel):
 
 
 class LeaderBoardCompetition(Competition):
+    configured = models.BooleanField(null=False, default=False)
 
     def get_type(self):
         return 'leader-board'

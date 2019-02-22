@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block head %}
-    <link href="{% static 'css/leader_board.css' %}" rel="stylesheet" type="text/css"/>
-{% endblock %}
-
 <script>
     {% block on_ready %}
         const entryUsername = $('#entry_username');
@@ -32,8 +28,7 @@
                         'proof': proof
                     },
                     success: (function () {
-                        //todo try reload?
-                        location.replace('{% url 'leader-board-competition' competition.id %}')
+                        location.reload(true)
                     })
                 })
             }
@@ -53,24 +48,28 @@
             drops.hide();
         });
 
-        viewRanks.click()
+        viewRanks.click();
     {% endblock %}
 </script>
 
 {% block content %}
     <div class="competition">
         {% if competition.user == user %}
-            <div class="formfield">
-                <label for="entry_drop">Drop</label>
-                <select id="entry_drop">
-                    {% for drop in drops %}
-                        <option id="{{ drop.id }}">{{ drop.drop.boss }} - {{ drop.drop.item }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br></div>
-            <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
-            <div class="formfield"><button id="add_entry">Add Entry</button></div>
+            {% if competition.configured %}
+                <div class="formfield">
+                    <label for="entry_drop">Drop</label>
+                    <select id="entry_drop">
+                        {% for drop in drops %}
+                            <option id="{{ drop.id }}">{{ drop.drop.boss }} - {{ drop.drop.item }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br></div>
+                <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
+                <div class="formfield"><button id="add_entry">Add Entry</button></div>
+            {% else %}
+                <a href="{% url 'leader-board-configure' competition.id %}">Configure Competition Points</a>
+            {% endif %}
             <br>
         {% endif %}
         <h2>{{ competition.title }}</h2>
