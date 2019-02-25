@@ -96,7 +96,7 @@ class LeaderBoardCard(GameCard):
 class LeaderBoardRanking:
     def __init__(self, username, points):
         self.username = username
-        self.points = points  # todo
+        self.points = points
 
 
 class BingoCompetition(Competition):

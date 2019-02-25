@@ -16,14 +16,14 @@ def leader_board_competition_view(request, **kwargs):
 
     for card in competition.game_cards.all():
         try:
-            ranks_dict[card.user_name] += 1  # todo pts
+            ranks_dict[card.user_name] += card.points
         except KeyError:
-            ranks_dict[card.user_name] = 1  # todo pts
+            ranks_dict[card.user_name] = card.points
 
     for rank in ranks_dict:
         rankings.append((rank, ranks_dict[rank]))
 
-    rankings.sort(key=lambda r: r[1], reverse=True)
+    rankings.sort(key=lambda r: r[1], reverse=True)  # todo additional sorting for ties
 
     context = {
         'competition': competition,
@@ -54,6 +54,7 @@ def ajax_update_leader_board(request, **kwargs):
 
     competition = LeaderBoardCompetition.objects.get(id=competition_id)
     drop = Drop.objects.get(id=drop_id)
+    leaderboard_drop = LeaderBoardDrop.objects.get(competition=competition, drop=drop)
 
     if request.user != competition.user:
         return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)  # todo error message?
@@ -63,7 +64,8 @@ def ajax_update_leader_board(request, **kwargs):
         LeaderBoardCard.objects.create(competition=competition,
                                        user_name=username,
                                        proof=proof,
-                                       drop=drop)
+                                       drop=drop,
+                                       points=leaderboard_drop.points)
         return HttpResponse()
 
 

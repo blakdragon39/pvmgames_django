@@ -68,6 +68,7 @@
                 <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
                 <div class="formfield"><button id="add_entry">Add Entry</button></div>
             {% else %}
+                {# todo configure competition at any time #}
                 <a href="{% url 'leader-board-configure' competition.id %}">Configure Competition Points</a>
             {% endif %}
             <br>
@@ -92,7 +93,7 @@
         <div id="drops">
             {% for card in competition.game_cards.all %}
                 <div class="listitem">
-                    {{ forloop.counter }}. {{ card.user_name }} - {{ card.proof }} - {{ card.drop }}
+                    {{ forloop.counter }}. {{ card.user_name }} - <a href="{{ card.proof }}">{{ card.proof }}</a> - {{ card.drop }}
                 </div>
             {% endfor %}
         </div>
