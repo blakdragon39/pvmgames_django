@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import status
 
-from games.models import LeaderBoardCompetition, Drop, LeaderBoardCard, LeaderBoardDrop
+from games.models import LeaderBoardCompetition, Drop, LeaderBoardCard, LeaderBoardDrop, LeaderBoardRank
 
 
 def leader_board_competition_view(request, **kwargs):
@@ -12,18 +12,23 @@ def leader_board_competition_view(request, **kwargs):
     drops = competition.drops.all()
 
     ranks_dict = {}
-    rankings = []
 
     for card in competition.game_cards.all():
         try:
-            ranks_dict[card.user_name] += card.points
+            rank = ranks_dict[card.user_name]
         except KeyError:
-            ranks_dict[card.user_name] = card.points
+            rank = LeaderBoardRank()
+            ranks_dict[card.user_name] = rank
+
+        rank.points += card.points
+        rank.bonus_points += 1
+
+    rankings = []
 
     for rank in ranks_dict:
         rankings.append((rank, ranks_dict[rank]))
 
-    rankings.sort(key=lambda r: r[1], reverse=True)  # todo additional sorting for ties
+    rankings.sort(key=lambda r: (r[1].points, r[1].bonus_points), reverse=True)
 
     context = {
         'competition': competition,
@@ -53,8 +58,8 @@ def ajax_update_leader_board(request, **kwargs):
     proof = request.GET.get('proof')
 
     competition = LeaderBoardCompetition.objects.get(id=competition_id)
-    drop = Drop.objects.get(id=drop_id)
-    leaderboard_drop = LeaderBoardDrop.objects.get(competition=competition, drop=drop)
+    leader_board_drop = LeaderBoardDrop.objects.get(competition=competition, id=drop_id)
+    drop = Drop.objects.get(id=leader_board_drop.drop.id)
 
     if request.user != competition.user:
         return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)  # todo error message?
@@ -65,7 +70,7 @@ def ajax_update_leader_board(request, **kwargs):
                                        user_name=username,
                                        proof=proof,
                                        drop=drop,
-                                       points=leaderboard_drop.points)
+                                       points=leader_board_drop.points)
         return HttpResponse()
 
 

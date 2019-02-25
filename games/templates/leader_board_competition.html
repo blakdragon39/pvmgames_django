@@ -86,7 +86,7 @@
         <div id="ranks">
             {% for rank in rankings %}
                 <div class="listitem">
-                    {{ forloop.counter }}. {{ rank.0 }} - {{ rank.1 }}
+                    {{ forloop.counter }}. {{ rank.0 }} - {{ rank.1.points }}
                 </div>
             {% endfor %}
         </div>

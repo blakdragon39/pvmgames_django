@@ -93,10 +93,10 @@ class LeaderBoardCard(GameCard):
     points = models.IntegerField(null=False, default=1)
 
 
-class LeaderBoardRanking:
-    def __init__(self, username, points):
-        self.username = username
-        self.points = points
+class LeaderBoardRank:
+    def __init__(self):
+        self.points = 0
+        self.bonus_points = 0
 
 
 class BingoCompetition(Competition):
