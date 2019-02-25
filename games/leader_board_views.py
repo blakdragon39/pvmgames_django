@@ -20,15 +20,16 @@ def leader_board_competition_view(request, **kwargs):
             rank = LeaderBoardRank()
             ranks_dict[card.user_name] = rank
 
-        rank.points += card.points
-        rank.bonus_points += 1
+        rank.points += card.points  # Add total points
+        rank.bonus_points += 1  # Add points for number of drops received
+        rank.order = card.id * -1  # Getting a card first is worth more. higher id = lower sort order
 
     rankings = []
 
     for rank in ranks_dict:
         rankings.append((rank, ranks_dict[rank]))
 
-    rankings.sort(key=lambda r: (r[1].points, r[1].bonus_points), reverse=True)
+    rankings.sort(key=lambda r: (r[1].points, r[1].bonus_points, r[1].order), reverse=True)
 
     context = {
         'competition': competition,

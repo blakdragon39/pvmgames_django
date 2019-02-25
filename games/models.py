@@ -97,6 +97,7 @@ class LeaderBoardRank:
     def __init__(self):
         self.points = 0
         self.bonus_points = 0
+        self.order = 0
 
 
 class BingoCompetition(Competition):
