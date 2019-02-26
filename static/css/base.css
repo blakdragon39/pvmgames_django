@@ -37,6 +37,11 @@ button {
     cursor: pointer;
 }
 
+.error {
+    margin: 8px 8px 8px 8px;
+    color: red;
+}
+
 .login {
     padding: 0 8px 16px 16px;
 }

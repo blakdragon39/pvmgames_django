@@ -29,19 +29,22 @@
                     },
                     success: (function () {
                         location.reload(true)
+                    }),
+                    error: (function (response) {
+                        showError(response.responseText)
                     })
                 })
             }
         });
 
-        viewDrops.click(function() {
+        viewDrops.click(function () {
             viewRanks.show();
             viewDrops.hide();
             drops.show();
             ranks.hide();
         });
 
-        viewRanks.click(function() {
+        viewRanks.click(function () {
             viewDrops.show();
             viewRanks.hide();
             ranks.show();
@@ -64,9 +67,12 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br></div>
+                <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br>
+                </div>
                 <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
-                <div class="formfield"><button id="add_entry">Add Entry</button></div>
+                <div class="formfield">
+                    <button id="add_entry">Add Entry</button>
+                </div>
             {% else %}
                 {# todo configure competition at any time #}
                 <a href="{% url 'leader-board-configure' competition.id %}">Configure Competition Points</a>
@@ -93,7 +99,8 @@
         <div id="drops">
             {% for card in competition.game_cards.all %}
                 <div class="listitem">
-                    {{ forloop.counter }}. {{ card.user_name }} - <a href="{{ card.proof }}">{{ card.proof }}</a> - {{ card.drop }}
+                    {{ forloop.counter }}. {{ card.user_name }} - <a href="{{ card.proof }}">{{ card.proof }}</a>
+                    - {{ card.drop }}
                 </div>
             {% endfor %}
         </div>

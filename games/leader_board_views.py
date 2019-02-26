@@ -63,9 +63,9 @@ def ajax_update_leader_board(request, **kwargs):
     drop = Drop.objects.get(id=leader_board_drop.drop.id)
 
     if request.user != competition.user:
-        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)  # todo error message?
+        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED, content='You are not allowed to edit this competition')
     elif not competition.configured:
-        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)  # todo error message?
+        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED, content='You are not allowed to edit this competition')
     else:
         LeaderBoardCard.objects.create(competition=competition,
                                        user_name=username,
@@ -83,14 +83,15 @@ def ajax_configure_leader_board(request, **kwargs):
         drop = LeaderBoardDrop.objects.get(id=drop_id)
 
         if drop.competition.user != request.user:
-            return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)  # todo error message?
+            return HttpResponse(status=status.HTTP_401_UNAUTHORIZED,
+                                content='You are not allowed to edit this competition')
 
         drop.points = values[drop_id]
 
         try:
             drop.save()
         except ValueError:
-            return HttpResponse(status=status.HTTP_403_FORBIDDEN)  # todo error message
+            return HttpResponse(status=status.HTTP_403_FORBIDDEN, content='One of the entered values is invalid')
 
     competition = LeaderBoardCompetition.objects.get(id=competition_id)
     competition.configured = True

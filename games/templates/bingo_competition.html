@@ -56,6 +56,9 @@
                     } else {
                         $('#' + localStorage.getItem('current_square_id')).removeClass('filledsquare');
                     }
+                }),
+                error: (function(response) {
+                    showError(response.responseText)
                 })
             })
         }

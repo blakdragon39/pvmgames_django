@@ -23,6 +23,9 @@
                 success: (function() {
                     console.log("success");
                     location.assign('{% url 'leader-board-competition' competition.id %}');
+                }),
+                error: (function(response) {
+                    showError(response.responseText)
                 })
             });
         });

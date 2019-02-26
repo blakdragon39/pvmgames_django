@@ -13,6 +13,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             {% block on_ready %}{% endblock %}
+
+            const error = $('#error');
+
+            function showError(message) {
+                error.text(message)
+            }
         });
     </script>
     {% block head %}{% endblock %}
@@ -29,7 +35,10 @@
     {% endif %}
     </div>
 
-    <div class="content">{%  block content %}{% endblock %}</div>
+    <div class="content">
+        <div class="error" id="error"></div>
+        {%  block content %}{% endblock %}
+    </div>
 </body>
 
 </html>
