@@ -8,45 +8,17 @@
 {% block content %}
     <a href="{% url 'new-competition' %}">Create a new competition</a>
     <br><br>
-    {# todo other competition types #}
-
     {% if your_competitions %}
         <h2>Your Competitions</h2>
         {% for competition in your_competitions %}
-
-            {# todo reuse this block somehow: #}
-            {% if competition.get_type == 'bingo' %}
-                <a href="{% url 'bingo-competition' competition.id %}" class="competitionlist">
-                    <img src="{% static 'images/bingo.png' %}"/>
-                    {{ competition.title }}
-                </a>
-            {% elif competition.get_type == 'leader-board' %}
-                <a href="{% url 'leader-board-competition' competition.id %}" class="competitionlist">
-                    <img src="{% static 'images/leaderboard.png' %}"/>
-                    {{ competition.title }}
-                </a>
-            {% endif %}
-
+            {% include 'competition_icon.html' with competition=competition %}
         {% endfor %}
     {% endif %}
 
     {% if all_competitions %}
         {% if your_competitions %}<h2>Other Competitions</h2>{% else %}<h2>Competitions</h2>{% endif %}
         {% for competition in all_competitions %}
-
-            {# todo reuse this block somehow: #}
-            {% if competition.get_type == 'bingo' %}
-                <a href="{% url 'bingo-competition' competition.id %}" class="competitionlist">
-                    <img src="{% static 'images/bingo.png' %}"/>
-                    {{ competition.title }}
-                </a>
-            {% elif competition.get_type == 'leader-board' %}
-                <a href="{% url 'leader-board-competition' competition.id %}" class="competitionlist">
-                    <img src="{% static 'images/leaderboard.png' %}"/>
-                    {{ competition.title }}
-                </a>
-            {% endif %}
-
+            {% include 'competition_icon.html' with competition=competition %}
         {% endfor %}
     {% endif %}
 
