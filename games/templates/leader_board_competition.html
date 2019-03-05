@@ -67,7 +67,14 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="formfield"><label for="entry_username">User Name </label><input id="entry_username"><br>
+                <div class="formfield">
+                    <datalist id="names">
+                        {% for name in names %}
+                            <option>{{ name }}</option>
+                        {% endfor %}
+                    </datalist>
+                    <label for="entry_username">User Name </label>
+                    <input id="entry_username" list="names"><br>
                 </div>
                 <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
                 <div class="formfield">

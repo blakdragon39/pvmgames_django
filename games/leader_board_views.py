@@ -34,7 +34,8 @@ def leader_board_competition_view(request, **kwargs):
     context = {
         'competition': competition,
         'drops': drops,
-        'rankings': rankings
+        'rankings': rankings,
+        'names': competition.game_cards.values_list('user_name', flat=True).distinct().all()
     }
 
     return render(request, 'leader_board_competition.html', context)
