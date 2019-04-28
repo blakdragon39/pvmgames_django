@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from settings_local import *
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'  # todo
@@ -23,10 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6!w33#22(o(gqjl5#t4em--f68o4cej40w%)v1@(=h6^j&$)pu'
+SECRET_KEY = SETTING_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = SETTING_DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -83,10 +84,7 @@ WSGI_APPLICATION = 'bingo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DB_HOST = 'localhost'
 DB_NAME = 'pvmgames'
-DB_USER = 'root'
-DB_PASS = 'password'
 
 DATABASES = {
     'default': {
