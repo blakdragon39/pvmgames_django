@@ -3,3 +3,4 @@ env
 *.pyc
 __pycache__
 .idea/*
+settings_local.py
