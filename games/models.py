@@ -6,26 +6,6 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 
 
-class Competition(PolymorphicModel):
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200, null=False, blank=False)
-
-    def __unicode__(self):
-        return self.title
-
-
-class BingoCompetition(Competition):
-    BINGO_TYPES = [
-        ('ITEMS', 'Items'),
-        ('BOSSES', 'Bosses'),
-        ('BOTH', 'Items and Bosses')
-    ]
-    type = models.CharField(max_length=100, choices=BINGO_TYPES, null=False, blank=False)
-    wilderness = models.BooleanField(null=False)
-    slayer = models.BooleanField(null=False)
-    free_space = models.BooleanField(null=False)
-
-
 class RunescapeEntity(PolymorphicModel):
     name = models.CharField(max_length=100, null=False, blank=False, unique=True)
     _image = models.CharField(max_length=100, null=False, blank=False)
@@ -65,11 +45,22 @@ class Drop(models.Model):
 
     def __unicode__(self):
         if self.item and self.boss:
-            return str(self.item) + ' - ' + str(self.boss)
+            return str(self.boss) + ' - ' + str(self.item)
         elif self.item:
             return str(self.item)
         elif self.boss:
             return str(self.boss)
+
+
+class Competition(PolymorphicModel):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, null=False, blank=False)
+
+    def __unicode__(self):
+        return self.title
+
+    def get_type(self):
+        return None
 
 
 class GameCard(PolymorphicModel):
@@ -78,6 +69,50 @@ class GameCard(PolymorphicModel):
 
     def __unicode__(self):
         return str(self.competition) + ' - ' + self.user_name
+
+
+class LeaderBoardCompetition(Competition):
+    configured = models.BooleanField(null=False, default=False)
+
+    def get_type(self):
+        return 'leader-board'
+
+
+class LeaderBoardDrop(models.Model):
+    competition = models.ForeignKey(LeaderBoardCompetition, null=False, on_delete=models.CASCADE, related_name='drops')
+    drop = models.ForeignKey(Drop, null=False, on_delete=models.CASCADE)
+    points = models.IntegerField(null=False, default=1)
+
+    def __unicode__(self):
+        return str(self.competition) + ' - ' + str(self.drop)
+
+
+class LeaderBoardCard(GameCard):
+    drop = models.ForeignKey(Drop, on_delete=models.CASCADE)
+    proof = models.CharField(max_length=256)
+    points = models.IntegerField(null=False, default=1)
+
+
+class LeaderBoardRank:
+    def __init__(self):
+        self.points = 0
+        self.bonus_points = 0
+        self.order = 0
+
+
+class BingoCompetition(Competition):
+    BINGO_TYPES = [
+        ('ITEMS', 'Items'),
+        ('BOSSES', 'Bosses'),
+        ('BOTH', 'Items and Bosses')
+    ]
+    type = models.CharField(max_length=100, choices=BINGO_TYPES, null=False, blank=False)
+    wilderness = models.BooleanField(null=False)
+    slayer = models.BooleanField(null=False)
+    free_space = models.BooleanField(null=False)
+
+    def get_type(self):
+        return 'bingo'
 
 
 class BingoCard(GameCard):

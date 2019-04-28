@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<script>
+    {% block on_ready %}
+        {% for drop in drops %}
+            $('#{{ drop.id }}').val({{ drop.points }});
+        {% endfor %}
+
+        $('#configure').click(function() {
+            var values = {};
+
+            {% for drop in drops %}
+                values['{{ drop.id }}'] = $('#{{ drop.id }}').val();
+            {% endfor %}
+
+            $.ajax({
+                url: '{% url 'configure-leader-board' %}',
+                data: {
+                    'competition_id': '{{ competition.id }}',
+                    'values': JSON.stringify(values)
+                },
+                success: (function() {
+                    console.log("success");
+                    location.assign('{% url 'leader-board-competition' competition.id %}');
+                }),
+                error: (function(response) {
+                    showError(response.responseText)
+                })
+            });
+        });
+    {% endblock %}
+</script>
+
+{% block content %}
+    {% for drop in drops %}
+        <div class="listitem">
+            <input id="{{ drop.id }}" type="number" min="1" style="width: 8em">
+            <label for="{{ drop.id }}">{{ drop.drop.boss }} - {{ drop.drop.item }}</label>
+        </div>
+    {% endfor %}
+    <button id="configure">Configure</button>
+{% endblock %}

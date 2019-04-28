@@ -14,6 +14,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from bingo import views
 from games.urls import game_urls
 from login.urls import login_urls
 
@@ -23,3 +24,5 @@ urlpatterns = [
 
 urlpatterns.extend(login_urls)
 urlpatterns.extend(game_urls)
+
+handler404 = views.error_404

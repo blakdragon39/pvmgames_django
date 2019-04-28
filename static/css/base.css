@@ -14,6 +14,7 @@ a:link, a:visited, a:hover, a:active {
 
 button {
     padding: 4px 4px 4px 4px;
+    margin: 4px 4px 4px 4px;
 }
 
 .titlebar {
@@ -32,6 +33,15 @@ button {
     text-decoration: none;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
+.error {
+    margin: 8px 8px 16px 8px;
+    color: red;
+}
+
 .login {
     padding: 0 8px 16px 16px;
 }
@@ -48,4 +58,16 @@ button {
     list-style: none;
     margin: 4px 4px 4px 4px;
     padding-left: 0;
+}
+
+.formcolumns {
+    display: inline-flex;
+}
+
+.formcolumn {
+    margin: 8px 8px 8px 8px;
+}
+
+.listitem {
+    margin: 4px 4px 4px 4px;
 }

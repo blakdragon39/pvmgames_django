@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<script>
+    {% block on_ready %}
+        const entryUsername = $('#entry_username');
+        const entryProof = $('#entry_proof');
+        const entryDrop = $('#entry_drop');
+        const addEntry = $('#add_entry');
+
+        const viewDrops = $('#view_drops');
+        const viewRanks = $('#view_ranks');
+        const drops = $('#drops');
+        const ranks = $('#ranks');
+
+        addEntry.click(function () {
+            var username = entryUsername.val().trim();
+            var proof = entryProof.val().trim();
+            var drop_id = entryDrop.find('option:selected').attr('id');
+
+            if (username && proof) {
+                $.ajax({
+                    url: '{% url 'update-leader-board' %}',
+                    data: {
+                        'competition_id': {{ competition.id }},
+                        'drop_id': drop_id,
+                        'username': username,
+                        'proof': proof
+                    },
+                    success: (function () {
+                        location.reload(true)
+                    }),
+                    error: (function (response) {
+                        showError(response.responseText)
+                    })
+                })
+            }
+        });
+
+        viewDrops.click(function () {
+            viewRanks.show();
+            viewDrops.hide();
+            drops.show();
+            ranks.hide();
+        });
+
+        viewRanks.click(function () {
+            viewDrops.show();
+            viewRanks.hide();
+            ranks.show();
+            drops.hide();
+        });
+
+        viewRanks.click();
+    {% endblock %}
+</script>
+
+{% block content %}
+    <div class="competition">
+        {% if competition.user == user %}
+            {% if competition.configured %}
+                <div class="formfield">
+                    <label for="entry_drop">Drop</label>
+                    <select id="entry_drop">
+                        {% for drop in drops %}
+                            <option id="{{ drop.id }}">{{ drop.drop.boss }} - {{ drop.drop.item }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="formfield">
+                    <datalist id="names">
+                        {% for name in names %}
+                            <option>{{ name }}</option>
+                        {% endfor %}
+                    </datalist>
+                    <label for="entry_username">User Name </label>
+                    <input id="entry_username" list="names"><br>
+                </div>
+                <div class="formfield"><label for="entry_proof">Proof </label><input id="entry_proof"><br></div>
+                <div class="formfield">
+                    <button id="add_entry">Add Entry</button>
+                </div>
+            {% else %}
+                {# todo configure competition at any time #}
+                <a href="{% url 'leader-board-configure' competition.id %}">Configure Competition Points</a>
+            {% endif %}
+            <br>
+        {% endif %}
+        <h2>{{ competition.title }}</h2>
+        {% if not competition.game_cards.all %}
+            <div>No entries yet</div>
+        {% else %}
+            <div>
+                <span id="view_drops" class="clickable"><u>View All Drops</u></span>
+                <span id="view_ranks" class="clickable"><u>View Ranks</u></span>
+            </div>
+        {% endif %}
+
+        <div id="ranks">
+            {% for rank in rankings %}
+                <div class="listitem">
+                    {{ forloop.counter }}. {{ rank.0 }} - {{ rank.1.points }}
+                </div>
+            {% endfor %}
+        </div>
+        <div id="drops">
+            {% for card in competition.game_cards.all %}
+                <div class="listitem">
+                    {{ forloop.counter }}. {{ card.user_name }} - <a href="{{ card.proof }}">{{ card.proof }}</a>
+                    - {{ card.drop }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

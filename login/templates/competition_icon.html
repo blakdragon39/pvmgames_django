@@ -1,0 +1,13 @@
+{% load static %}
+
+{% if competition.get_type == 'bingo' %}
+    <a href="{% url 'bingo-competition' competition.id %}" class="competitionlist">
+        <img src="{% static 'images/bingo.png' %}"/>
+        {{ competition.title }}
+    </a>
+{% elif competition.get_type == 'leader-board' %}
+    <a href="{% url 'leader-board-competition' competition.id %}" class="competitionlist">
+        <img src="{% static 'images/leaderboard.png' %}"/>
+        {{ competition.title }}
+    </a>
+{% endif %}
