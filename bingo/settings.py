@@ -29,7 +29,7 @@ SECRET_KEY = SETTING_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = SETTING_DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['159.203.43.143']
 
 
 # Application definition
