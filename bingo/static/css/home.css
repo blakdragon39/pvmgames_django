@@ -1,0 +1,13 @@
+.competitionlist {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 120px;
+    text-decoration: none;
+}
+
+.competitionlist img {
+    max-height: 50px;
+    max-width: 50px;
+}
