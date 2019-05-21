@@ -32,6 +32,7 @@ class NewBingoCardForm(forms.Form):
 
 
 class LeaderBoardForm(forms.Form):
+    alchemical_hydra = forms.BooleanField(required=False)
     abyssal_sire = forms.BooleanField(required=False)
     cerberus = forms.BooleanField(required=False)
     grotesque_guardians = forms.BooleanField(required=False)

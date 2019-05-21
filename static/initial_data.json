@@ -7,6 +7,12 @@
       "slayer_level": 85
     },
     {
+      "name": "Alchemical Hydra",
+      "file": "alchemical_hydra.png",
+      "wilderness": false,
+      "slayer_level": 95
+    },
+    {
       "name": "Callisto",
       "file": "callisto.png",
       "wilderness": true,
@@ -145,6 +151,10 @@
       "file": "abyssal_whip.png"
     },
     {
+      "name": "Alchemical Hydra Heads",
+      "file": "alchemical_hydra_heads.png"
+    },
+    {
       "name": "Archers Ring",
       "file": "archers_ring.png"
     },
@@ -193,6 +203,10 @@
       "file": "black_tourmaline_core.png"
     },
     {
+      "name": "Brimstone Ring",
+      "file": "brimstone_ring.png"
+    },
+    {
       "name": "Dragon 2h Sword",
       "file": "dragon_2h_sword.png"
     },
@@ -227,6 +241,18 @@
     {
       "name": "Granite Ring",
       "file": "granite_ring.png"
+    },
+    {
+      "name": "Hydra's Claw",
+      "file": "hydras_claw.png"
+    },
+    {
+      "name": "Hydra Leather",
+      "file": "hydra_leather.png"
+    },
+    {
+      "name": "Hydra Tail",
+      "file": "hydra_tail.png"
     },
     {
       "name": "KBD Heads",
@@ -674,6 +700,31 @@
       "boss": "Dagannoth Supreme",
       "item": "Dragon Axe",
       "drop_rate": 128
+    },
+    {
+      "boss": "Alchemical Hydra",
+      "item": "Alchemical Hydra Heads",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Alchemical Hydra",
+      "item": "Brimstone Ring",
+      "drop_rate": 180
+    },
+    {
+      "boss": "Alchemical Hydra",
+      "item": "Hydra Leather",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Alchemical Hydra",
+      "item": "Hydra Tail",
+      "drop_rate": 512
+    },
+    {
+      "boss": "Alchemical Hydra",
+      "item": "Hydra's Claw",
+      "drop_rate": 1000
     }
   ]
 }
