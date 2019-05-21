@@ -8,7 +8,7 @@ from games.models import Boss, Item, Drop
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        with open('static/initial_data.json') as file_data:
+        with open('bingo/static/initial_data.json') as file_data:
             json_data = json.load(file_data)
             boss_data = json_data['bosses']
             item_data = json_data['items']
