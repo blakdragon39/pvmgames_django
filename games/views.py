@@ -70,6 +70,9 @@ def check_leader_board_errors(request, form):
 def create_leader_board_competition(user, title, form):
     competition = LeaderBoardCompetition.objects.create(user=user, title=title)
 
+    if form.cleaned_data['alchemical_hydra']:
+        create_leader_board_drop(competition, Boss.objects.get(name='Alchemical Hydra'))
+
     if form.cleaned_data['abyssal_sire']:
         create_leader_board_drop(competition, Boss.objects.get(name='Abyssal Sire'))
 
