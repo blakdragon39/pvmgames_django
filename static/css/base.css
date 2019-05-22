@@ -33,6 +33,31 @@ button {
     text-decoration: none;
 }
 
+.alpha {
+    color: #f8b4aa;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.alpha .tooltip {
+    visibility: hidden;
+
+    width: 140px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+    margin-left: 5px;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.alpha:hover .tooltip {
+    visibility: visible;
+}
+
 .clickable:hover {
     cursor: pointer;
 }
