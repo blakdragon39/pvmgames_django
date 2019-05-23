@@ -10,7 +10,7 @@ from games.models import BingoCompetition, Competition, BingoCard
 
 def bingo_competition_view(request, **kwargs):
     competition = BingoCompetition.objects.get(id=kwargs['id'])
-    card_id = kwargs['card_id'] if 'card_id' in kwargs else None # todo DoesNotExist case (404)
+    card_id = kwargs['card_id'] if 'card_id' in kwargs else None  # todo DoesNotExist case (404)
 
     if card_id:
         card = competition.game_cards.get(id=card_id)
