@@ -1,14 +1,38 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from rest_framework import status
 
 from games.models import LeaderBoardCompetition, Drop, LeaderBoardCard, LeaderBoardDrop, LeaderBoardRank
 
 
+def get_competition(competition_id):
+    try:
+        return LeaderBoardCompetition.objects.get(id=competition_id)
+    except LeaderBoardCompetition.DoesNotExist:
+        raise Http404
+
+
+def get_leader_board_drop(competition, drop_id):
+    try:
+        if competition:
+            return competition.drops.get(id=drop_id)
+        else:
+            return LeaderBoardDrop.objects.get(id=drop_id)
+    except LeaderBoardDrop.DoesNotExist:
+        raise Http404
+
+
+def get_drop(drop_id):
+    try:
+        return Drop.objects.get(id=drop_id)
+    except Drop.DoesNotExist:
+        raise Http404
+
+
 def leader_board_competition_view(request, **kwargs):
-    competition = LeaderBoardCompetition.objects.get(id=kwargs['id'])
+    competition = get_competition(kwargs['id'])
     drops = competition.drops.all()
 
     ranks_dict = {}
@@ -42,7 +66,7 @@ def leader_board_competition_view(request, **kwargs):
 
 
 def leader_board_configure_view(request, **kwargs):
-    competition = LeaderBoardCompetition.objects.get(id=kwargs['id'])
+    competition = get_competition(kwargs['id'])
     drops = LeaderBoardDrop.objects.filter(competition=competition)
 
     context = {
@@ -59,9 +83,9 @@ def ajax_update_leader_board(request, **kwargs):
     username = request.GET.get('username')
     proof = request.GET.get('proof')
 
-    competition = LeaderBoardCompetition.objects.get(id=competition_id)
-    leader_board_drop = LeaderBoardDrop.objects.get(competition=competition, id=drop_id)
-    drop = Drop.objects.get(id=leader_board_drop.drop.id)
+    competition = get_competition(competition_id)
+    leader_board_drop = get_leader_board_drop(competition, drop_id)
+    drop = get_drop(leader_board_drop.drop.id)
 
     if request.user != competition.user:
         return HttpResponse(status=status.HTTP_401_UNAUTHORIZED, content='You are not allowed to edit this competition')
@@ -81,7 +105,7 @@ def ajax_configure_leader_board(request, **kwargs):
     competition_id = request.GET.get('competition_id')
 
     for drop_id in values:
-        drop = LeaderBoardDrop.objects.get(id=drop_id)
+        drop = get_leader_board_drop(None, drop_id)
 
         if drop.competition.user != request.user:
             return HttpResponse(status=status.HTTP_401_UNAUTHORIZED,
@@ -94,7 +118,7 @@ def ajax_configure_leader_board(request, **kwargs):
         except ValueError:
             return HttpResponse(status=status.HTTP_403_FORBIDDEN, content='One of the entered values is invalid')
 
-    competition = LeaderBoardCompetition.objects.get(id=competition_id)
+    competition = get_competition(competition_id)
     competition.configured = True
     competition.save()
 
