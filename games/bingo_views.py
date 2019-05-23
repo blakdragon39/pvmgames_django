@@ -10,7 +10,7 @@ from games.models import BingoCompetition, Competition, BingoCard
 
 def bingo_competition_view(request, **kwargs):
     competition = BingoCompetition.objects.get(id=kwargs['id'])
-    card_id = request.GET.get('card_id')  # todo DoesNotExist case (404)
+    card_id = kwargs['card_id'] if 'card_id' in kwargs else None # todo DoesNotExist case (404)
 
     if card_id:
         card = competition.game_cards.get(id=card_id)
@@ -27,7 +27,6 @@ def bingo_competition_view(request, **kwargs):
 
 @login_required
 def new_bingo_card_view(request, **kwargs):
-
     if request.method == 'POST':
         form = NewBingoCardForm(request.POST)
         competition = Competition.objects.get(id=kwargs['competition_id'])
@@ -38,9 +37,9 @@ def new_bingo_card_view(request, **kwargs):
             user_name = form.cleaned_data.get('user_name')
             slayer_level = form.cleaned_data.get('slayer_level')
 
-            create_new_bingo_card(competition, user_name, slayer_level)
+            card = create_new_bingo_card(competition, user_name, slayer_level)
 
-            return redirect('bingo-competition', id=competition.id)
+            return redirect('bingo-competition', id=competition.id, card_id=card.id)
     else:
         form = NewBingoCardForm()
 
