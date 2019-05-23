@@ -26,9 +26,10 @@
             {% with id=forloop.counter0 %}
                 $('#{{ id }}').click(function () {
                     bingoInfo.show();
-                    squareLabel.text('{{ square.0 }}{% if square.1 %} - {{ square.1 }}{% endif %}');
 
-                    var proofText = '{% if square.2 %}{{ square.2 }}{% else %}{% endif %}';
+                    squareLabel.text('{{ square.0|escapejs }}{% if square.1 %} - {{ square.1|escapejs }}{% endif %}');
+
+                    var proofText = '{% if square.2 %}{{ square.2|escapejs }}{% else %}{% endif %}';
                     squareProofInput.val(proofText);
                     squareProofText.text(proofText);
                     squareProofText.attr('href', '{{ square.2 }}');

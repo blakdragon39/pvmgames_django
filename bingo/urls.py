@@ -26,3 +26,4 @@ urlpatterns.extend(login_urls)
 urlpatterns.extend(game_urls)
 
 handler404 = views.error_404
+handler500 = views.error_500  # todo test?
