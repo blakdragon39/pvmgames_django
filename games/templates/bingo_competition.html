@@ -8,12 +8,13 @@
 <script>
     {% block on_ready %}
         const currentCard = $('#current_card');
-        const bingoUpdater = $('#bingo_updater');
+        const bingoInfo = $('#bingo_info');
         const squareLabel = $('#square_label');
-        const squareProof = $('#square_proof');
+        const squareProofInput = $('#square_proof_input');
+        const squareProofText = $('#square_proof_text');
         const squareSubmit = $('#square_submit');
 
-        bingoUpdater.hide();
+        bingoInfo.hide();
         currentCard.val({{ card.id }});
         localStorage.setItem('current_square_id', -1);
 
@@ -24,15 +25,20 @@
         {% for square in card.to_list %}
             {% with id=forloop.counter0 %}
                 $('#{{ id }}').click(function () {
-                    bingoUpdater.show();
+                    bingoInfo.show();
                     squareLabel.text('{{ square.0 }}{% if square.1 %} - {{ square.1 }}{% endif %}');
-                    squareProof.val('{% if square.2 %}{{ square.2 }}{% else %}{% endif %}');
+
+                    var proofText = '{% if square.2 %}{{ square.2 }}{% else %}{% endif %}';
+                    squareProofInput.val(proofText);
+                    squareProofText.text(proofText);
+                    squareProofText.attr('href', '{{ square.2 }}');
+
                     localStorage.setItem('current_square_id', {{ id }})
                 });
             {% endwith %}
         {% endfor %}
 
-        squareProof.on('keypress', function(event) {
+        squareProofInput.on('keypress', function(event) {
             if (event.keyCode === 13) {
                 updateSquare()
             }
@@ -41,7 +47,7 @@
         squareSubmit.click(updateSquare);
 
         function updateSquare() {
-            var proof = squareProof.val().trim();
+            var proof = squareProofInput.val().trim();
 
             $.ajax({
                 url: '{% url 'update-bingo-card' %}',
