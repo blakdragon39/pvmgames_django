@@ -64,6 +64,9 @@ class Competition(PolymorphicModel):
 
 
 class GameCard(PolymorphicModel):
+    class Meta:
+        ordering = ['user_name']
+
     competition = models.ForeignKey(Competition, null=False, on_delete=models.CASCADE, related_name='game_cards')
     user_name = models.CharField(max_length=50, null=False, blank=False)
 
