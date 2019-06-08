@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from rest_framework import status
+from random import randint
 
 from games.bingo import create_new_bingo_card
 from games.forms import NewBingoCardForm
@@ -36,7 +37,9 @@ def bingo_competition_view(request, **kwargs):
     if card_id:
         card = get_competition_card(competition, card_id)
     else:
-        card = competition.game_cards.first()
+        count = competition.game_cards.count()
+        random_index = randint(0, count - 1)
+        card = competition.game_cards.all()[random_index]
 
     context = {
         'competition': competition,
