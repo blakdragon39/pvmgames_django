@@ -231,6 +231,10 @@
       "file": "eternal_crystal.png"
     },
     {
+      "name": "General Graardor Jr.",
+      "file": "general_graardor_jr.png"
+    },
+    {
       "name": "Granite Gloves",
       "file": "granite_gloves.png"
     },
@@ -265,6 +269,14 @@
     {
       "name": "Kraken Tentacle",
       "file": "kraken_tentacle.png"
+    },
+    {
+      "name": "Kree'Arra Jr.",
+      "file": "kree_arra_jr.webp"
+    },
+    {
+      "name": "Kril Tsutsaroth Jr.",
+      "file": "kril_tsutsaroth_jr.png"
     },
     {
       "name": "Magic Fang",
@@ -373,6 +385,10 @@
     {
       "name": "Zamorakian Spear",
       "file": "zamorakian_spear.png"
+    },
+    {
+      "name": "Zilyana Jr.",
+      "file": "zilyana_jr.png"
     }
   ],
   "drops": [
@@ -452,6 +468,11 @@
       "drop_rate": 384
     },
     {
+      "boss": "General Graardor",
+      "item": "General Graardor Jr.",
+      "drop_rate": 5000
+    },
+    {
       "boss": "Kril Tsutsaroth",
       "item": "Staff of the Dead",
       "drop_rate": 508
@@ -470,6 +491,11 @@
       "boss": "Kril Tsutsaroth",
       "item": "Zamorakian Spear",
       "drop_rate": 128
+    },
+    {
+      "boss": "Kril Tsutsaroth",
+      "item": "Kril Tsutsaroth Jr.",
+      "drop_rate": 5000
     },
     {
       "boss": "Kree'Arra",
@@ -492,6 +518,11 @@
       "drop_rate": 384
     },
     {
+      "boss": "Kree'Arra",
+      "item": "Kree'Arra Jr.",
+      "drop_rate": 5000
+    },
+    {
       "boss": "Commander Zilyana",
       "item": "Saradomin Hilt",
       "drop_rate": 508
@@ -510,6 +541,11 @@
       "boss": "Commander Zilyana",
       "item": "Saradomin's Light",
       "drop_rate": 254
+    },
+    {
+      "boss": "Commander Zilyana",
+      "item": "Zilyana Jr.",
+      "drop_rate": 5000
     },
     {
       "boss": "Zulrah",
