@@ -56,5 +56,6 @@ class LeaderBoardForm(forms.Form):
     
     kalphite_queen = forms.BooleanField(required=False)
     king_black_dragon = forms.BooleanField(required=False)
+    sarachnis = forms.BooleanField(required=False)
     vorkath = forms.BooleanField(required=False)
     zulrah = forms.BooleanField(required=False)

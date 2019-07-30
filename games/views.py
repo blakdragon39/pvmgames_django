@@ -71,75 +71,78 @@ def create_leader_board_competition(user, title, form):
     competition = LeaderBoardCompetition.objects.create(user=user, title=title)
 
     if form.cleaned_data['alchemical_hydra']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Alchemical Hydra'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Alchemical Hydra'))
 
     if form.cleaned_data['abyssal_sire']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Abyssal Sire'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Abyssal Sire'))
 
     if form.cleaned_data['cerberus']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Cerberus'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Cerberus'))
 
     if form.cleaned_data['grotesque_guardians']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Grotesque Guardians'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Grotesque Guardians'))
 
     if form.cleaned_data['kraken']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Kraken'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Kraken'))
 
     if form.cleaned_data['thermonuclear_smoke_devil']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Thermonuclear Smoke Devil'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Thermonuclear Smoke Devil'))
 
     if form.cleaned_data['callisto']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Callisto'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Callisto'))
 
     if form.cleaned_data['chaos_elemental']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Chaos Elemental'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Chaos Elemental'))
 
     if form.cleaned_data['scorpia']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Scorpia'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Scorpia'))
 
     if form.cleaned_data['venenatis']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Venenatis'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Venenatis'))
 
     if form.cleaned_data['vetion']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Vet\'ion'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Vet\'ion'))
 
     if form.cleaned_data['zilyana']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Commander Zilyana'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Commander Zilyana'))
 
     if form.cleaned_data['graardor']:
-        create_leader_board_drop(competition, Boss.objects.get(name='General Graardor'))
+        create_leader_board_drops(competition, Boss.objects.get(name='General Graardor'))
 
     if form.cleaned_data['kree_arra']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Kree\'Arra'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Kree\'Arra'))
 
     if form.cleaned_data['kril_tsutsaroth']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Kril Tsutsaroth'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Kril Tsutsaroth'))
 
     if form.cleaned_data['prime']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Dagannoth Prime'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Dagannoth Prime'))
 
     if form.cleaned_data['rex']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Dagannoth Rex'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Dagannoth Rex'))
 
     if form.cleaned_data['supreme']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Dagannoth Supreme'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Dagannoth Supreme'))
 
     if form.cleaned_data['kalphite_queen']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Kalphite Queen'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Kalphite Queen'))
 
     if form.cleaned_data['king_black_dragon']:
-        create_leader_board_drop(competition, Boss.objects.get(name='King Black Dragon'))
+        create_leader_board_drops(competition, Boss.objects.get(name='King Black Dragon'))
 
     if form.cleaned_data['vorkath']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Vorkath'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Vorkath'))
 
     if form.cleaned_data['zulrah']:
-        create_leader_board_drop(competition, Boss.objects.get(name='Zulrah'))
+        create_leader_board_drops(competition, Boss.objects.get(name='Zulrah'))
+
+    if form.cleaned_data['sarachnis']:
+        create_leader_board_drops(competition, Boss.objects.get(name="Sarachnis"))
 
     return competition
 
 
-def create_leader_board_drop(competition, boss):
+def create_leader_board_drops(competition, boss):
     drops = Drop.objects.filter(boss=boss)
 
     for drop in drops:

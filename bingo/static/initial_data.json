@@ -97,6 +97,12 @@
       "slayer_level": 0
     },
     {
+      "name": "Sarachnis",
+      "file": "sarachnis.png",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
       "name": "Scorpia",
       "file": "scorpia.png",
       "wilderness": true,
@@ -207,6 +213,10 @@
       "file": "brimstone_ring.png"
     },
     {
+      "name": "Clue Scroll (Elite)",
+      "file": "clue_scroll_elite.png"
+    },
+    {
       "name": "Dragon 2h Sword",
       "file": "dragon_2h_sword.png"
     },
@@ -257,6 +267,14 @@
     {
       "name": "Hydra Tail",
       "file": "hydra_tail.png"
+    },
+    {
+      "name": "Jar of Eyes",
+      "file": "jar_of_eyes.png"
+    },
+    {
+      "name": "Kalphite Princess",
+      "file": "kalphite_princess.png"
     },
     {
       "name": "KBD Heads",
@@ -311,6 +329,10 @@
       "file": "ring_of_the_gods.png"
     },
     {
+      "name": "Sarachnis Cudgel",
+      "file": "sarachnis_cudgel.webp"
+    },
+    {
       "name": "Saradomin Hilt",
       "file": "saradomin_hilt.png"
     },
@@ -321,6 +343,10 @@
     {
       "name": "Saradomin's Light",
       "file": "saradomins_light.png"
+    },
+    {
+      "name": "Scorpia's Offspring",
+      "file": "scorpias_offspring.png"
     },
     {
       "name": "Seercull",
@@ -341,6 +367,10 @@
     {
       "name": "Smouldering Stone",
       "file": "smouldering_stone.png"
+    },
+    {
+      "name": "Sraracha",
+      "file": "sraracha.png"
     },
     {
       "name": "Staff of the Dead",
@@ -369,6 +399,10 @@
     {
       "name": "Uncut Onyx",
       "file": "uncut_onyx.png"
+    },
+    {
+      "name": "Venenatis Spiderling",
+      "file": "venenatis_spinderling.png"
     },
     {
       "name": "Unsired",
@@ -761,6 +795,146 @@
       "boss": "Alchemical Hydra",
       "item": "Hydra's Claw",
       "drop_rate": 1000
+    },
+    {
+      "boss": "Sarachnis",
+      "item": "Jar of Eyes",
+      "drop_rate": 0
+    },
+    {
+      "boss": "Sarachnis",
+      "item": "Sarachnis Cudgel",
+      "drop_rate": 0
+    },
+    {
+      "boss": "Sarachnis",
+      "item": "Sraracha",
+      "drop_rate": 0
+    },
+    {
+      "boss": "Kalphite Queen",
+      "item": "Kalphite Princess",
+      "drop_rate": 3000
+    },
+    {
+      "boss": "Scorpia",
+      "item": "Scorpia's Offspring",
+      "drop_rate": 2000
+    },
+    {
+      "boss": "Venenatis",
+      "item": "Venenatis Spiderling",
+      "drop_rate": 2000
+    },
+    {
+      "boss": "Vorkath",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 65
+    },
+    {
+      "boss": "Zulrah",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 75
+    },
+    {
+      "boss": "Callisto",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 100
+    },
+    {
+      "boss": "Cerberus",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 100
+    },
+    {
+      "boss": "Kalphite Queen",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 100
+    },
+    {
+      "boss": "Venenatis",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 100
+    },
+    {
+      "boss": "Vet'ion",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 100
+    },
+    {
+      "boss": "Abyssal Sire",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 180
+    },
+    {
+      "boss": "Chaos Elemental",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 200
+    },
+    {
+      "boss": "Grotesque Guardians",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 230
+    },
+    {
+      "boss": "Commander Zilyana",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 250
+    },
+    {
+      "boss": "General Graardor",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 250
+    },
+    {
+      "boss": "Kril Tsutsaroth",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 250
+    },
+    {
+      "boss": "Kree'arra",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 250
+    },
+    {
+      "boss": "Alchemical Hydra",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 256
+    },
+    {
+      "boss": "Sarachnis",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 0
+    },
+    {
+      "boss": "King Black Dragon",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 450
+    },
+    {
+      "boss": "Kraken",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 500
+    },
+    {
+      "boss": "Thermonuclear Smoke Devil",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 500
+    },
+    {
+      "boss": "Dagannoth Prime",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 750
+    },
+    {
+      "boss": "Dagannoth Rex",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 750
+    },
+    {
+      "boss": "Dagannoth Supreme",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 750
     }
   ]
 }
