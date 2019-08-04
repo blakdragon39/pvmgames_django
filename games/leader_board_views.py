@@ -59,6 +59,7 @@ def leader_board_competition_view(request, **kwargs):
         'competition': competition,
         'drops': drops,
         'rankings': rankings,
+        'cards': competition.game_cards.order_by('id').all(),
         'names': competition.game_cards.values_list('user_name', flat=True).distinct().all()
     }
 

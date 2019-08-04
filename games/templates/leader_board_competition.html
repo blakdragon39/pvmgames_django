@@ -104,7 +104,7 @@
             {% endfor %}
         </div>
         <div id="drops">
-            {% for card in competition.game_cards.all %}
+            {% for card in cards %}
                 <div class="listitem">
                     {{ forloop.counter }}. {{ card.user_name }} - <a href="{{ card.proof }}">{{ card.proof }}</a>
                     - {{ card.drop }}
