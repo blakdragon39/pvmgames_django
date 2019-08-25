@@ -139,6 +139,9 @@ def create_leader_board_competition(user, title, form):
     if form.cleaned_data['sarachnis']:
         create_leader_board_drops(competition, Boss.objects.get(name="Sarachnis"))
 
+    if form.cleaned_data['corporeal_beast']:
+        create_leader_board_drops(competition, Boss.objects.get(name="Corporeal Beast"))
+
     return competition
 
 

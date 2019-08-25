@@ -37,6 +37,12 @@
       "slayer_level": 0
     },
     {
+      "name": "Corporeal Beast",
+      "file": "corporeal_beast.webp",
+      "wilderness": false,
+      "slayer_level": 0
+    },
+    {
       "name": "Dagannoth Prime",
       "file": "dagannoth_prime.png",
       "wilderness": false,
@@ -161,6 +167,10 @@
       "file": "alchemical_hydra_heads.png"
     },
     {
+      "name": "Arcane Sigil",
+      "file": "arcane_sigil.png"
+    },
+    {
       "name": "Archers Ring",
       "file": "archers_ring.png"
     },
@@ -237,6 +247,10 @@
       "file": "dragonbone_necklace.png"
     },
     {
+      "name": "Elysian Sigil",
+      "file": "elysian_sigil.webp"
+    },
+    {
       "name": "Eternal Crystal",
       "file": "eternal_crystal.png"
     },
@@ -255,6 +269,10 @@
     {
       "name": "Granite Ring",
       "file": "granite_ring.png"
+    },
+    {
+      "name": "Holy Elixir",
+      "file": "holy_elixir.png"
     },
     {
       "name": "Hydra's Claw",
@@ -321,6 +339,10 @@
       "file": "pegasian_crystal.png"
     },
     {
+      "name": "Pet Dark Core",
+      "file": "pet_dark_core.png"
+    },
+    {
       "name": "Primordial Crystal",
       "file": "primordial_crystal.png"
     },
@@ -367,6 +389,14 @@
     {
       "name": "Smouldering Stone",
       "file": "smouldering_stone.png"
+    },
+    {
+      "name": "Spectral Sigil",
+      "file": "spectral_sigil.webp"
+    },
+    {
+      "name": "Spirit Shield",
+      "file": "spirit_shield.webp"
     },
     {
       "name": "Sraracha",
@@ -935,6 +965,41 @@
       "boss": "Dagannoth Supreme",
       "item": "Clue Scroll (Elite)",
       "drop_rate": 750
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Arcane Sigil",
+      "drop_rate": 1365
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Elysian Sigil",
+      "drop_rate": 4095
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Holy Elixir",
+      "drop_rate": 170
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Pet Dark Core",
+      "drop_rate": 5000
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Spectral Sigil",
+      "drop_rate": 1365
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Spirit Shield",
+      "drop_rate": 64
+    },
+    {
+      "boss": "Corporeal Beast",
+      "item": "Clue Scroll (Elite)",
+      "drop_rate": 200
     }
   ]
 }

@@ -59,3 +59,4 @@ class LeaderBoardForm(forms.Form):
     sarachnis = forms.BooleanField(required=False)
     vorkath = forms.BooleanField(required=False)
     zulrah = forms.BooleanField(required=False)
+    corporeal_beast = forms.BooleanField(required=False)
