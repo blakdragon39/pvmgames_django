@@ -227,6 +227,18 @@
       "file": "clue_scroll_elite.png"
     },
     {
+      "name": "Dagannoth Prime Jr.",
+      "file": "dagannoth_prime_jr.png"
+    },
+    {
+      "name": "Dagannoth Rex Jr.",
+      "file": "dagannoth_rex_jr.png"
+    },
+    {
+      "name": "Dagannoth Supreme Jr.",
+      "file": "dagannoth_supreme_jr.png"
+    },
+    {
       "name": "Draconic Visage",
       "file": "draconic_visage.png"
     },
@@ -1026,6 +1038,21 @@
     {
       "boss": "King Black Dragon",
       "item": "Draconic Visage",
+      "drop_rate": 5000
+    },
+    {
+      "boss": "Dagannoth Prime",
+      "item": "Dagannoth Prime Jr.",
+      "drop_rate": 5000
+    },
+    {
+      "boss": "Dagannoth Rex",
+      "item": "Dagannoth Rex Jr.",
+      "drop_rate": 5000
+    },
+    {
+      "boss": "Dagannoth Supreme",
+      "item": "Dagannoth Supreme Jr.",
       "drop_rate": 5000
     }
   ]
