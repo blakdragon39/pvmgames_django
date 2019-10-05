@@ -227,6 +227,10 @@
       "file": "clue_scroll_elite.png"
     },
     {
+      "name": "Draconic Visage",
+      "file": "draconic_visage.png"
+    },
+    {
       "name": "Dragon 2h Sword",
       "file": "dragon_2h_sword.png"
     },
@@ -291,6 +295,10 @@
       "file": "jar_of_eyes.png"
     },
     {
+      "name": "Jar of Sand",
+      "file": "jar_of_sand.png"
+    },
+    {
       "name": "Kalphite Princess",
       "file": "kalphite_princess.png"
     },
@@ -345,6 +353,10 @@
     {
       "name": "Primordial Crystal",
       "file": "primordial_crystal.png"
+    },
+    {
+      "name": "Prince Black Dragon",
+      "file": "prince_black_dragon.webp"
     },
     {
       "name": "Ring of the Gods",
@@ -1000,6 +1012,21 @@
       "boss": "Corporeal Beast",
       "item": "Clue Scroll (Elite)",
       "drop_rate": 200
+    },
+    {
+      "boss": "Kalphite Queen",
+      "item": "Jar of Sand",
+      "drop_rate": "2000"
+    },
+    {
+      "boss": "King Black Dragon",
+      "item": "Prince Black Dragon",
+      "drop_rate": 3000
+    },
+    {
+      "boss": "King Black Dragon",
+      "item": "Draconic Visage",
+      "drop_rate": 5000
     }
   ]
 }
