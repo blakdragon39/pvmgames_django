@@ -131,6 +131,12 @@
       "file": "zulrah.png",
       "wilderness": false,
       "slayer_level": 0
+    },
+    {
+      "name": "Verzik",
+      "file": "verzik.webp",
+      "wilderness": false,
+      "slayer_level": 0
     }
   ],
   "items": [
@@ -373,6 +379,46 @@
     {
       "name": "Zamorakian Spear",
       "file": "zamorakian_spear.png"
+    },
+    {
+      "name": "Vet'ion Jr.",
+      "file": "vetion_jr.png"
+    },
+    {
+      "name": "Vorki",
+      "file": "vorki.png"
+    },
+    {
+      "name": "Avernic Defender Hilt",
+      "file": "avernic_defender_hilt.webp"
+    },
+    {
+      "name": "Ghrazi Rapier",
+      "file": "ghrazi_rapier.webp"
+    },
+    {
+      "name": "Justiciar Chestguard",
+      "file": "justiciar_chestguard.webp"
+    },
+    {
+      "name": "Justiciar Faceguard",
+      "file": "justiciar_faceguard.png"
+    },
+    {
+      "name": "Justiciar Legguards",
+      "file": "justiciar_legguards.webp"
+    },
+    {
+      "name": "Sanguinesti Staff",
+      "file": "sanguinesti_staff.webp"
+    },
+    {
+      "name": "Scythe of Vitur",
+      "file": "scythe_of_vitur.png"
+    },
+    {
+      "name": "Lil' Zik",
+      "file": "lil_zik.png"
     }
   ],
   "drops": [
@@ -725,6 +771,56 @@
       "boss": "Alchemical Hydra",
       "item": "Hydra's Claw",
       "drop_rate": 1000
+    },
+    {
+      "boss": "Vet'ion",
+      "item": "Vet'ion Jr.",
+      "drop_rate": 2000
+    },
+    {
+      "boss": "Vorkath",
+      "item": "Vorki",
+      "drop_rate": "vorki.png"
+    },
+    {
+      "boss": "Verzik",
+      "item": "Avernic Defender Hilt",
+      "drop_rate": 21
+    },
+    {
+      "boss": "Verzik",
+      "item": "Ghrazi Rapier",
+      "drop_rate": 86
+    },
+    {
+      "boss": "Verzik",
+      "item": "Justiciar Chestguard",
+      "drop_rate": 86
+    },
+    {
+      "boss": "Verzik",
+      "item": "Justiciar Faceguard",
+      "drop_rate": 86
+    },
+    {
+      "boss": "Verzik",
+      "item": "Justiciar Legguards",
+      "drop_rate": 86
+    },
+    {
+      "boss": "Verzik",
+      "item": "Sanguinesti Staff",
+      "drop_rate": 86
+    },
+    {
+      "boss": "Verzik",
+      "item": "Scythe of Vitur",
+      "drop_rate": 173
+    },
+    {
+      "boss": "Verzik",
+      "item": "Lil' Zik",
+      "drop_rate": 650
     }
   ]
 }

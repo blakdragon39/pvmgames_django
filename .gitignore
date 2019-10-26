@@ -5,3 +5,4 @@ __pycache__
 .idea/*
 settings_local.py
 pvmgamesenv/
+venv/
